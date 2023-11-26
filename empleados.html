@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleados</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos-empleados.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/estilos-empleados.css">
     <script src="https://kit.fontawesome.com/04db09d270.js" crossorigin="anonymous"></script>
      <script src="https://kit.fontawesome.com/54de7e7a33.js" crossorigin="anonymous"></script>
 </head>
@@ -32,7 +34,8 @@
                 <iframe id="tiendas" src="tiendas.html" frameborder="0"></iframe>
 
                 <div id="nuevo-empleado-formulario">
-                    <button id="nuevo-empleado">Nuevo Empleado</button>
+                    <button type="button" class="btn btn btn-primary" id="nuevo-empleado" data-bs-toggle="modal"
+                        data-bs-target=#modalEmpleados>Nuevo Empleado</button>
                 </div>
 
                <div class="contenedor">
@@ -91,7 +94,64 @@
                 </div>
             </div>
         </div>
+    
+    <!-- Modal Registro-->
+    <div class="modal fade" id="modalEmpleados" tabindex="-1" aria-labelledby="modalEmpleadosLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header" style="color: white; background-color: #00B3CA;">
+                    <h1 class="modal-title fs-5" id="modalEmpleadosLabel">NUEVO EMPLEADO</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioEmpleado">
+                        <div class="row">
+                            <div class="col-md-6">     
+                                <label for="identidad">Identidad:</label>
+                                <input type="text" id="identidad" name="identidad" required>  
+                                <label for="p_nombre">Primer Nombre:</label>
+                                <input type="text" id="p_nombre" name="p_nombre" required>
+                                <label for="s_nombre">Segundo Nombre:</label>
+                                <input type="text" id="s_nombre" name="s_nombre" required>
+                                <label for="p_apellido">Primer Apellido:</label>
+                                <input type="text" id="p_apellido" name="p_apellido" required>
+                                <label for="s_apellido">Segundo Apellido:</label>
+                                <input type="text" id="s_apellido" name="s_apellido" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nombre">Telefono:</label>
+                                <input type="number" id="telefono" name="telefono" required>
+                                <label for="correo">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                                <label for="departamento">Departamento</label>
+                                <input type="text" id="departamento" name="departamento" required>
+                                <label for="cargo">Cargo</label>
+                                <input type="text" id="cargo" name="cargo" required>
+                                <label for="fecha_ingreso">Fecha de Ingreso</label>
+                                <input type="date"  id="fecha_ingreso" name="fecha_ingreso" required>
+                                <label for="hora_entrada">Hora de Entrada</label>
+                                <input type="time" id="hora_entrada" name="hora_entrada" required>
+                                <label for="hora_salida">Hora de Salida</label>
+                                <input type="time" id="hora_salida" name="hora_salida" required>
 
-    <script src="assets/js/codigo-empleados.js"></script>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin Modal -->
+
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/codigo-empleados.js"></script>
+
+
 </body>
 </html>
