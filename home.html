@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuidora de Celulares</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilos-home.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bienvenido a la Distribuidora de Celulares</h1>
+        <div class="card-container">
+            <div class="card" onclick="irAVentas()">
+                <h2>Ventas</h2>
+                <p>Ventas de celulares</p>
+            </div>
+            <div class="card" onclick="irAProveedores()">
+                <h2>Proveedores</h2>
+                <p>Información sobre los proveedores</p>
+            </div>
+            <div class="card" onclick="irAClientes()">
+                <h2>Clientes</h2>
+                <p>Detalles de los clientes</p>
+            </div>
+            <div class="card" onclick="irAEmpleados()">
+                <h2>Empleados</h2>
+                <p>Control de empleados</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function irAVentas() {
+            // Redirigir a la pantalla de ventas
+            window.location.href = "ventas.html";
+        }
+
+        function irAProveedores() {
+            // Redirigir a la pantalla de proveedores
+            window.location.href = "proveedores.html";
+        }
+
+        function irAClientes() {
+            // Redirigir a la pantalla de clientes
+            window.location.href = "clientes.html";
+        }
+
+        function irAEmpleados() {
+            // Redirigir a la pantalla de empleados
+            window.location.href = "empleados.html";
+        }
+    </script>
+</body>
+
+</html>
