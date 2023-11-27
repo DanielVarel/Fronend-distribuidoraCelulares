@@ -142,7 +142,15 @@ input {
     border-radius: 4px;
 }
 
-  /*Fin agregado*/
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover{
+  color: red;
+}
+  /*Fin agregado K*/
   
   .modal-contenido {
     background-color: white;
