@@ -28,19 +28,30 @@
                 <div class="itemList"><a  href="proveedores.html">Proveedores</a></div>
             </div>
             <div class="frames">
+                <!--
                 <iframe id="ordenes" src="ordenes.html" frameborder="0"></iframe>
                 <iframe id="clientes" src="clientes.html" frameborder="0"></iframe>
                 <iframe id="repartidores" src="repartidores.html" frameborder="0"></iframe>
                 <iframe id="tiendas" src="tiendas.html" frameborder="0"></iframe>
-
+                -->
+                
                 <div id="nuevo-empleado-formulario">
                     <button type="button" class="btn btn btn-primary" id="nuevo-empleado" data-bs-toggle="modal"
                         data-bs-target=#modalEmpleados>Nuevo Empleado</button>
                 </div>
 
                <div class="contenedor">
+
+                   <h4 style="padding-left: 20px;">Lista de Proveedores</h4>
+                        <input type="text" id="buscador" placeholder="Buscar por nombre o ID" onkeyup="buscarEmpleado()">
+                            <div class="seccion-empleados" id="seccion-empleados">
+                            <!-- Aquí se mostrarán los proveedores filtrados -->
+                        </div>
+                    </div>
+                
+                   <!--
                     <div class="seccion-repartidores" id="seccion-repartidores">
-                        <!-- <div class="card">
+                         <div class="card">
                                 
                             <TABLE BORDER>
                                 <TR class="detalles-tabla">
@@ -51,8 +62,8 @@
                                 </TR>
                                 
                             </TABLE> 
-                         </div> -->
-                    </div>
+                         </div> 
+                    </div> -->
                     
                     
                       
