@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos-proveedores.css">
+
+    
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="header" style="height: 40px;">
+
+        </div>
+
+        <div class="container">
+            <div class="menuColumn">
+                <div class="itemList"><i class="fa-solid fa-sidebar"></i><a href="clientes.html">Clientes</a></div>
+                <div class="itemList"><span>Ventas</span></div>
+                <div class="itemList"><i class="fa-sharp fa-regular fa-moped"></i><a  href="empleados.html">Empleados</a></div>
+                <div class="itemList"><a  href="proveedores.html">Proveedores</a></div>
+            </div>
+            <div class="frames">
+                
+
+
+                <div id="nuevo-proveedor-formulario">
+                    <button type="button" class="btn btn btn-primary" id="nuevo-proveedor" data-bs-toggle="modal"
+                        data-bs-target=#modalProveedores>Nuevo Proveedor</button>
+                </div>
+
+
+                <div class="contenedor">
+
+                    <h4>Lista de Proveedores</h4>
+                        <input type="text" id="buscador" placeholder="Buscar por nombre o ID" onkeyup="buscarProveedor()">
+                            <div class="seccion-proveedores" id="seccion-proveedores">
+                            <!-- Aquí se mostrarán los proveedores filtrados -->
+                        </div>
+                    </div>
+                    <!--
+                    <div class="seccion-proveedores" id="seccion-proveedores">
+                        <div class="card">
+                                
+                            <TABLE BORDER>
+                                <TR class="detalles-tabla">
+                                    <TH></TH><TH>ID</TH> <TH>Name</TH> <TH>Email</TH> <TH>Phone number</TH> <TH>Verified</TH>
+                                </TR>
+                                <TR class="detalles-tabla">
+                                    <TD class="checkbox-tama"><div class="checkbox-apple"><input class="yep" id="check-apple" type="checkbox"><label for="check-apple"></label></div></TD><TD>1234567</TD><TD><div class="tabla-repartidor"><img src="assets/img/repartidor2.jpeg" class="img-repartidor"><p>Javier Perez</p></div></TD><TD>daniel.avila@gamil.com</TD> <TD>123456789</TD><TD class="botones"><button class="boton-true">True</button><button class="boton-false">False</button></TD>
+                                </TR>
+                                
+                            </TABLE> 
+                        </div>
+                    </div>-->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="miVentanaModal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar">&times;</span>
+            <h2>Detalles cliente</h2>
+            <div class="contenedor-modal">
+                <div class="modal-img">
+                    <img src="assets/img/repartidor1.jpeg" alt="">
+                </div>
+                <div class="modal-inf">
+                    <p><i class="fa-solid fa-user"></i> Daniel Avila</p>
+                    <p><i class="fa-solid fa-id-card-clip"></i> 12345557</p>
+                    <p><i class="fa-solid fa-envelope"></i> daniel.avila.a.v.2000@gmail.com</p>
+                    <p><i class="fa-solid fa-phone"></i> 123456789</p>
+                </div>
+                <div class="botones">
+                    <div>
+                        <button>Validate</button>
+                    </div>
+                    <div>
+                        <button>Deny</button>
+                    </div>
+                    <div>
+                        <button>Delete</button>
+                    </div>
+                    <div>
+                        <button>Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Registro-->
+    <div class="modal fade" id="modalProveedores" tabindex="-1" aria-labelledby="modalProveedoresLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header" style="color: white; background-color: #00B3CA;">
+                    <h1 class="modal-title fs-5" id="modalProveedoresLabel">NUEVO CLIENTE</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioClientes">
+                        <div class="row">
+                            <div class="col-md-6">     
+                                <label for="nombre">Nombre Proveedor:</label>
+                                <input type="text" id="nombre" name="nombre_proveedor" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nombre">Telefono:</label>
+                                <input type="number" id="telefono" name="telefono" required>
+                                <label for="correo">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin Modal -->
+
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/codigo-proveedores.js"></script>
+
+
+</body>
+
+</html>
