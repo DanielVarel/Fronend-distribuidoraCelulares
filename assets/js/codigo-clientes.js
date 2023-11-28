@@ -18,7 +18,52 @@ var usuarioRegistrados = [
 ];
 
 
+//Agregado K
+function mostrarClientes(clientes) {
+  let tabla = '';
+  for (let i = 0; i < clientes.length; i++) {
+      tabla += `<tr class="detalles-tabla" onclick="abrirVentanaModal()">
+                  <td class="checkbox-tama">
+                      <div class="checkbox-apple">
+                          <input class="yep" id="check-apple-${i}" type="checkbox"> <!-- Hacer cada id único -->
+                          <label for="check-apple-${i}"></label>
+                      </div>
+                  </td>
+                  <td>${clientes[i].id}</td>
+                  <td><p>${clientes[i].name}</p></td>
+                  <td>${clientes[i].email}</td>
+                  <td>${clientes[i].phoneNumber}</td>
+              </tr>`;
+  }
 
+  document.getElementById('seccion-clientes').innerHTML = `
+      <div class="card">
+          <table border>
+              <tr class="detalles-tabla">
+                  <th></th>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Número de teléfono</th>
+              </tr>
+              ${tabla}
+          </table>
+      </div>`;
+}
+
+function buscarCliente() {
+  const input = document.getElementById('buscador').value.toLowerCase();
+  const resultados = usuarioRegistrados.filter(cliente =>
+      cliente.id.toLowerCase().includes(input) ||
+      cliente.name.toLowerCase().includes(input) 
+      
+  );
+  mostrarClientes(resultados);
+}
+
+mostrarClientes(usuarioRegistrados);
+//Fin agregado K
+/*
 function mostrarRepartidores(){
     let tabla = ``;
     let verificado = true;
@@ -41,7 +86,7 @@ function mostrarRepartidores(){
 }
 
 mostrarRepartidores();
-
+*/
 
 var miVentanaModal = document.getElementById("miVentanaModal");
 
