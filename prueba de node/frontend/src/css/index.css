@@ -1,0 +1,14 @@
+.mi-boton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Estilo al pasar el ratón por encima del botón */
+.mi-boton:hover {
+    background-color: #2980b9;
+}
