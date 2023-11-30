@@ -71,9 +71,19 @@ function agregarCliente() {
     };
     
     usuarioRegistrados.push(nuevoCliente);
+
     mostrarClientes(usuarioRegistrados);
+    
+    
+    // Limpiar los campos del formulario
+    document.getElementById('formularioClientes').reset();
+
 }
 
+
+
+
+/*
 // Función para editar un cliente existente
 function editarCliente(index) {
     const cliente = usuarioRegistrados[index];
@@ -101,7 +111,7 @@ function editarCliente(index) {
         mostrarClientes(usuarioRegistrados);
         $('#modalClientes').modal('hide');
     };
-}
+}*/
 
 // Función para eliminar un cliente
 function eliminarCliente(index) {
