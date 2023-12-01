@@ -1,21 +1,68 @@
+var usuarioRegistrados = [];
 
-var usuarioRegistrados = [
-    {
-        id: "1234567",
-        name: "Daniel Avila", 
-        email: "daniel.avila.a.v.2000@gmail.com",
-        password: "12",
-        phoneNumber: "123456789",
-        verificado: true 
-    }
-];
+// devuelve todos los registros
+function  obtenerClientes(){
+    fetch(`http://localhost:3000/clientes`, {
+        method: 'get',
+        headers: {"Content-Type": "application/json"},
+      })
+    .then((respuesta) => respuesta.json())
+    .then((datos) => {
+        usuarioRegistrados = datos;
+        console.log(usuarioRegistrados)
+        mostrarClientes();
+    })
+    .catch(error => {
+            console.log(error)
+    }); 
+}
+
+obtenerClientes();
+
+
+
+// fetch(`http://localhost:3000/clientes`, {
+//     method: 'GET',
+//     headers: {
+//       "Content-Type": "application/json",
+//     }
+//   })
+//   .then((respuesta) => respuesta.json())
+//   .then(async (result) => {
+//     usuarioRegistrados = result;
+//     console.log(usuarioRegistrados);
+//     mostrarClientes(usuarioRegistrados);
+// }); 
+
+
+
+// function obtenerDatos() {
+//     return new Promise(resolve => {
+//       setTimeout(() => {
+//         fetch('http://localhost:3000/clientes')
+//     .then(response => response.json())
+//     .then(usuarioRegistrados => console.log(usuarioRegistrados))
+//     .catch(error => console.error('Error:', error));
+//       }, 1000); // Simulando una operación asincrónica, como una solicitud a una API
+//     });
+//   }
+
+// async function mostrarRegistrosClientes() {
+//     // Cuerpo de la función
+//     obtenerDatos();
+// }
+
+
+// mostrarRegistrosClientes();
 
 
 //Agregado K
 
 
 // Función para mostrar los clientes en la tabla
-function mostrarClientes(clientes) {
+function mostrarClientes() {
+    let clientes = usuarioRegistrados
+    
     let tabla = '';
     for (let i = 0; i < clientes.length; i++) {
         tabla += `<tr class="detalles-tabla" onclick="abrirVentanaModal(${i})">
@@ -25,8 +72,8 @@ function mostrarClientes(clientes) {
                             <label for="check-apple-${i}"></label>
                         </div>
                     </td>
-                    <td>${clientes[i].id}</td>
-                    <td><p>${clientes[i].name}</p></td>
+                    <td>${clientes[i].ID}</td>
+                    <td><p>${clientes[i].P_NOMRE}</p></td>
                     <td>${clientes[i].email}</td>
                     <td>${clientes[i].phoneNumber}</td>
                     <td>
@@ -124,8 +171,8 @@ function abrirVentanaModal(index) {
 
 
 
-// Mostrar clientes al cargar la página
-mostrarClientes(usuarioRegistrados);
+// // Mostrar clientes al cargar la página
+// mostrarClientes(usuarioRegistrados);
 
 
 ///////
@@ -134,35 +181,9 @@ mostrarClientes(usuarioRegistrados);
 
 
 
-/*
-function mostrarRepartidores(){
-    let tabla = ``;
-    let verificado = true;
-
-    for(let i=0; i<usuarioRegistrados.length; i++){
-
-        tabla += ` <TR class="detalles-tabla" onclick="abrirVentanaModal()">
-                    <TD class="checkbox-tama"><div class="checkbox-apple"><input class="yep" id="check-apple" type="checkbox"><label for="check-apple"></label></div></TD><TD>${usuarioRegistrados[i].id}</TD><TD><p>${usuarioRegistrados[i].name}</p></TD><TD>${usuarioRegistrados[i].email}</TD> <TD>${usuarioRegistrados[i].phoneNumber}</TD><TD class="botones" id="botones"><i class="fa-solid fa-check"></i></TD>
-                 </TR>`;                 
-    }
-
-    document.getElementById("seccion-repartidores").innerHTML = ` <div class="card">    
-                                                                <TABLE BORDER>
-                                                                    <TR class="detalles-tabla">
-                                                                        <TH></TH><TH>ID</TH> <TH>Name</TH> <TH>Email</TH> <TH>Phone number</TH> <TH>Verified</TH>
-                                                                    </TR>
-                                                                    ${tabla} 
-                                                                </TABLE> 
-                                                            </div>`;
-}
-
-mostrarRepartidores();
-*/
-
-
 // Cierra la ventana modal cuando se hace clic afuera de ella
 window.onclick = function(event) {
-  if (event.target == miVentanaModal) {
+    if (event.target == miVentanaModal) {
     miVentanaModal.style.display = "none";
   }
 }
