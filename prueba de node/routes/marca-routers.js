@@ -38,7 +38,7 @@ router.get('/marcas/:ID', async (req, res) => {
     try {
 
         // Mapear el resultado y enviarlo como respuesta
-        const sql = "SELECT * FROM marca WHERE marcaID = :ID"; // Reemplaza 'tu_tabla' con el nombre de tu tabla
+        const sql = "SELECT * FROM marca WHERE marcaID = :ID"; 
         const result = await BD.Open(sql, [ID], false);
 
         const marca = {
