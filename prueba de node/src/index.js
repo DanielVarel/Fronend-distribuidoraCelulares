@@ -5,6 +5,7 @@ const app = express();
 
 const router = require("../routes/routes.js");
 const clientes = require("../routes/clientes-routers.js");
+const celulares = require("../routes/celulares-routers.js");
 
 
 /**Configuraciones**/
@@ -17,6 +18,7 @@ app.use(cors());
 
 app.use(router)
 app.use(clientes)
+app.use(celulares)
 
 app.listen(app.get('port'), ()=>{
     console.log("server status on port en 3000");
