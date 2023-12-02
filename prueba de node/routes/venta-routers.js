@@ -10,45 +10,37 @@ router.get('/', (req,res)=>{
 });
 
 // devolver todos los registros
-router.get('/empelados', async (req, res) => {
-    const empleados = [];
-    sql="select * from empleado";
+router.get('/ventas', async (req, res) => {
+    const ventas = [];
+    sql="select * from venta";
 
     let result = await BD.Open(sql,[],false);
     console.log(result.rows);
     
-    console.log(empleados);
+    console.log(ventas);
 
-    result.rows.map(emp=>{
+    result.rows.map(ven=>{
         let userSchema = {
-            "empleadoID": emp[0],
-            "DNI": emp[1],
-            "P_NOMBRE": emp[2],
-            "S_NOMBRE": emp[3],
-            "P_APELLIDO": emp[4],
-            "S_APELLIDO": emp[5],
-            "TELEFONO": emp[6],
-            "CORREO": emp[7],
-            "DEPARTAMENTO": emp[8],
-            "CARGO": emp[9],
-            "FECHA_INGRESO": emp[10],
-            "DIRECCION": emp[11],
-            "HORA_SALIDA": emp[12],
-            "HORA_ENTRADA": emp[13]
+            "ID": ven[0],
+            "FechaVenta": ven[1],
+            "Cliente": ven[2],
+            "Empleado": ven[3],
+            "TipoPago": ven[4]
+            
         }
-        empleados.push(userSchema)
+        ventas.push(userSchema)
     });
-    res.json({empleados});
+    res.json({ventas});
 });
 
 
 // devolver un registro con el id especifico
-router.get('/empleados/:ID', async (req, res) => {
+router.get('/ventas/:ID', async (req, res) => {
     const { ID } = req.params;
 
     try {
         // Consultar el registro por DNI
-        const selectQuery = "SELECT * FROM empleado WHERE empleadoID = :ID";
+        const selectQuery = "SELECT * FROM venta WHERE ID = :ID";
         const result = await BD.Open(selectQuery, [ID], false);
 
         if (result.rows.length === 0) {
@@ -56,25 +48,16 @@ router.get('/empleados/:ID', async (req, res) => {
         }
 
         // Mapear el resultado y enviarlo como respuesta
-        const emp = {
-            "empleadoID":  result.rows[0][0],
-            "DNI": result.rows[0][1],
-            "P_NOMBRE": result.rows[0][2],
-            "S_NOMBRE": result.rows[0][3],
-            "P_APELLIDO": result.rows[0][4],
-            "S_APELLIDO": result.rows[0][5],
-            "TELEFONO": result.rows[0][6],
-            "CORREO": result.rows[0][7],
-            "DEPARTAMENTO": result.rows[0][8],
-            "CARGO": result.rows[0][9],
-            "FECHA_INGRESO": result.rows[0][10],
-            "DIRECCION": result.rows[0][11],
-            "HORA_ENTRADA": result.rows[0][12],
-            "HORA_SALIDA": result.rows[0][13]
-
+        const venta = {
+            "ID":  result.rows[0][0],
+            "FechVenta": result.rows[0][1],
+            "Cliente": result.rows[0][2],
+            "Empleado": result.rows[0][3],
+            "TipoPago": result.rows[0][4]
+        
         };
 
-        res.status(200).json({ emp });
+        res.status(200).json({ venta });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Error al recuperar el registro de la base de datos" });
@@ -82,12 +65,12 @@ router.get('/empleados/:ID', async (req, res) => {
 });
 
 //insertar un nuevo registro
-router.post('/empleados', async (req, res) => {
-    const {empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA} = req.body;
+router.post('/ventas', async (req, res) => {
+    const {ID, FECHA_VENTA, CLIENTEID, EMPLEADOID, TIPOPAGOID} = req.body;
 
     console.log(req.body)
 
-    if (!empleadoID ||!DNI || !P_NOMBRE || !S_NOMBRE ||  !P_APELLIDO || !S_APELLIDO || !TELEFONO || !CORREO || !DEPARTAMENTOID || !CARGOID || !FECHA_INGRESO || !HORA_ENTRADA || !HORA_SALIDA) {
+    if (!FECHA_VENTA || !CLIENTEID ||  !EMPLEADOID || !TIPOPAGOID) {
         return res.status(400).json({ error: "Todos los campos son requeridos" });
     }
 
@@ -100,9 +83,9 @@ router.post('/empleados', async (req, res) => {
         //     return res.status(400).json({ error: "Ya existe un registro con este ID" });
         // }
 
-        const sql = "INSERT INTO empleado (empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA) VALUES (:empleadoID,:DNI, :P_NOMBRE, :S_NOMBRE, :P_APELLIDO, :S_APELLIDO, :TELEFONO, :CORREO, :DEPARTAMENTOID, :CARGOID, :FECHA_INGRESO, :HORA_ENTRADA, :HORA_SALIDA)";
+        const sql = "INSERT INTO cliente (FECHA_VENTA, CLIENTEID, EMPLEADOID, TIPOPAGOID) VALUES (:FECHA_VENTA, :CLIENTEID, :EMPLEADOID, :TIPOPAGOID)";
         console.log('Consulta SQL:', sql);
-        const bindParams = [empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA];
+        const bindParams = [FECHA_VENTA, CLIENTEID, EMPLEADOID, TIPOPAGOID];
 
         let result = await BD.Open(sql, bindParams, true);
         console.log(result);
@@ -116,17 +99,17 @@ router.post('/empleados', async (req, res) => {
 
 
 // actualizar un registro especifico segun el ID
-router.put('/empleados/:ID', async (req, res) => {
+router.put('/ventas/:ID', async (req, res) => {
     const { ID } = req.params;
-    const { DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA} = req.body;
+    const { FECHA_VENTA, CLIENTEID, EMPLEADOID, TIPOPAGOID } = req.body;
 
-    if (!DNI || !P_NOMBRE || !S_NOMBRE ||  !P_APELLIDO || !S_APELLIDO || !TELEFONO || !CORREO || !DEPARTAMENTOID || !CARGOID || !FECHA_INGRESO || !HORA_ENTRADA || !HORA_SALIDA) {
+    if (!FECHA_VENTA|| !CLIENTEID || !EMPLEADOID || !TIPOPAGOID) {
         return res.status(400).json({ error: "NOMBRE, APELLIDO y CORREO son campos requeridos" });
     }
 
     try {
         // Verificar si el DNI existe
-        const checkExistingDNIQuery = "SELECT COUNT(*) AS count FROM EMPLEADO WHERE empleadoID = :ID";
+        const checkExistingDNIQuery = "SELECT COUNT(*) AS count FROM venta WHERE ID = :ID";
         const checkResult = await BD.Open(checkExistingDNIQuery, [ID], false);
 
         if (checkResult.rows[0][0] === 0) {
@@ -134,8 +117,8 @@ router.put('/empleados/:ID', async (req, res) => {
         }
 
         // Actualizar el registro
-        const updateQuery = "UPDATE empleado SET DNI = :DNI, P_NOMBRE = :P_NOMBRE, S_NOMBRE= :S_NOMBRE, P_APELLIDO=: P_APELLIDO, S_APELLIDO= :S_APELLIDO, TELEFONO = :TELEFONO, CORREO = :CORREO, DEPARTAMENTOID= DEPARTAMENTOID, CARGOID= :CARGOID, FECHA_INGRESO= :FECHA_INGRESO, HORA_ENTRADA = :HORA_ENTRADA, HORA_SALIDA= :HORA_SALIDA  WHERE empleadoID = :ID";
-        const bindParams = [DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA, ID];
+        const updateQuery = "UPDATE venta SET FECHA_VENTA = :FECHA_VENTA, CLIENTEID = :CLIENTEID, EMPLEADOID = :EMPLEADOID, TIPOPAGOID= :TIPOPAGOID  WHERE ID = :ID";
+        const bindParams = [FECHA_VENTA, CLIENTEID, EMPLEADOID, TIPOPAGOID, ID];
 
         let result = await BD.Open(updateQuery, bindParams, true);
         console.log(result);
