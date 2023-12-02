@@ -54,6 +54,8 @@ router.get('/tipoPago/:ID', async (req, res) => {
     }
 });
 
+module.exports = router;
+
 //no creo que se deba de crear metodos de pago
 //deberian de ser agregados directamente en la tabla
 //por eso solo mostramos todos los metodos y un metodo en especifico (por ID)

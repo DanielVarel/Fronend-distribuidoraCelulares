@@ -54,5 +54,7 @@ router.get('/estadosGarantia/:ID', async (req, res) => {
     }
 });
 
+
+module.exports = router;
 //igual no creo que se deba de ingresar los estados de la garantia 
 //en mi opinion debe de ser directo desde la BD

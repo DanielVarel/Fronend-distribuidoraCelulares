@@ -10,7 +10,7 @@ router.get('/', (req,res)=>{
 });
 
 // devolver todos los registros
-router.get('/empelados', async (req, res) => {
+router.get('/empleados', async (req, res) => {
     const empleados = [];
     sql="select * from empleado";
 

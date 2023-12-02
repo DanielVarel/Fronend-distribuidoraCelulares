@@ -37,7 +37,7 @@ router.get('/detallesVenta/:ID', async (req, res) => {
 
     try {
         // Consultar el registro por venta
-        const selectQuery = "SELECT * FROM detalle_venta WHERE ventaID = :ventaID";
+        const selectQuery = "SELECT * FROM detalle_venta WHERE ventaID = :ID";
         const result = await BD.Open(selectQuery, [ID], false);
 
         if (result.rows.length === 0) {
