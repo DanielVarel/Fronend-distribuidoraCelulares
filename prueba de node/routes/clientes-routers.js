@@ -22,13 +22,13 @@ router.get('/clientes', async (req, res) => {
     result.rows.map(clie=>{
         let userSchema = {
             "ID": clie[0],
-            "P_NOMBRE": clie[1],
-            "S_NOMBRE": clie[2],
-            "P_APELLIDO": clie[3],
-            "S_APELLIDO": clie[4],
-            "CORREO": clie[5],
+            "DNI": clie[1],
+            "P_NOMBRE": clie[2],
+            "S_NOMBRE": clie[3],
+            "P_APELLIDO": clie[4],
+            "S_APELLIDO": clie[5],
             "TELEFONO": clie[6],
-            "DNI": clie[7]
+            "CORREO": clie[7]
         }
         clientes.push(userSchema)
     });
@@ -52,13 +52,13 @@ router.get('/clientes/:ID', async (req, res) => {
         // Mapear el resultado y enviarlo como respuesta
         const cliente = {
             "ID":  result.rows[0][0],
-            "P_NOMBRE": result.rows[0][1],
-            "S_NOMBRE": result.rows[0][2],
-            "P_APELLIDO": result.rows[0][3],
-            "S_APELLIDO": result.rows[0][4],
-            "CORREO": result.rows[0][5],
+            "DNI": result.rows[0][1],
+            "P_NOMBRE": result.rows[0][2],
+            "S_NOMBRE": result.rows[0][3],
+            "P_APELLIDO": result.rows[0][4],
+            "S_APELLIDO": result.rows[0][5],
             "TELEFONO": result.rows[0][6],
-            "DNI": result.rows[0][7]
+            "CORREO": result.rows[0][7]
         };
 
         res.status(200).json({ cliente });
@@ -103,17 +103,17 @@ router.post('/clientes', async (req, res) => {
 
 
 // actualizar un registro especifico segun el ID
-router.put('/fromoracle/:ID', async (req, res) => {
+router.put('/clientes/:ID', async (req, res) => {
     const { ID } = req.params;
-    const { NOMBRE, APELLIDO, CORREO } = req.body;
+    const { P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, CORREO, TELEFONO, DNI } = req.body;
 
-    if (!NOMBRE || !APELLIDO || !CORREO) {
+    if (!P_NOMBRE || !S_NOMBRE || !P_APELLIDO || !S_APELLIDO || !CORREO ||!TELEFONO || !DNI) {
         return res.status(400).json({ error: "NOMBRE, APELLIDO y CORREO son campos requeridos" });
     }
 
     try {
         // Verificar si el DNI existe
-        const checkExistingDNIQuery = "SELECT COUNT(*) AS count FROM personas WHERE ID = :ID";
+        const checkExistingDNIQuery = "SELECT COUNT(*) AS count FROM clientes WHERE ID = :ID";
         const checkResult = await BD.Open(checkExistingDNIQuery, [ID], false);
 
         if (checkResult.rows[0][0] === 0) {
@@ -121,8 +121,8 @@ router.put('/fromoracle/:ID', async (req, res) => {
         }
 
         // Actualizar el registro
-        const updateQuery = "UPDATE personas SET NOMBRE = :NOMBRE, APELLIDO = :APELLIDO, CORREO = :CORREO WHERE ID = :ID";
-        const bindParams = [NOMBRE, APELLIDO, CORREO, ID];
+        const updateQuery = "UPDATE clientes SET P_NOMBRE= :P_NOMBRE, S_NOMBRE = :S_NOMBRE, P_APELLIDO = :P_APELLIDO, S_APELLIDO= :S_APELLIDO, CORREO = :CORREO,  TELEFONO = :TELEFONO,  DNI =:DNI  WHERE ID = :ID";
+        const bindParams = [P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, CORREO, TELEFONO, DNI, ID];
 
         let result = await BD.Open(updateQuery, bindParams, true);
         console.log(result);
