@@ -121,15 +121,12 @@ router.post('/celulares', async (req, res) => {
 // actualizar un registro especifico segun el ID
 router.put('/celulares/:ID', async (req, res) => {
     const { ID } = req.params;
-    //const {CELULARID, MODELOID, NOMBRE_CELULAR, MARCAID, PRECIO, PROVEEDORID, CANTIDAD_RAM, PROCESADORID, IMEI, CAMARA_RESOLUCION, ALMACENAMIENTO, BATERIA, DIMENSIONESID, PESO, SOID, CANTIDAD_SIM, COLORID, SKU, EXISTENCIA } = req.body;
-    const {NOMBRE_CELULAR, PRECIO, EXISTENCIA } = req.body;
-
-
+    const { MODELOID, NOMBRE_CELULAR, MARCAID, PRECIO, PROVEEDORID, CANTIDAD_RAM, PROCESADORID, IMEI, CAMARA_RESOLUCION, ALMACENAMIENTO, BATERIA, DIMENSIONESID, PESO, SOID, CANTIDAD_SIM, COLORID, SKU, EXISTENCIA } = req.body;
 
     try {
         // Actualizar el registro
-        const updateQuery = "UPDATE celulares SET NOMBRE_CELULAR=:NOMBRE_CELULAR, PRECIO=:PRECIO, EXISTENCIA=:EXISTENCIA WHERE CELULARID= :ID"
-        const bindParams = [NOMBRE_CELULAR, PRECIO, EXISTENCIA, ID];
+        const updateQuery = "UPDATE celulares SET MODELOID=:MODELOID, NOMBRE_CELULAR=:NOMBRE_CELULAR, MARCAID=:MARCAID, PRECIO=:PRECIO, PROVEEDORID=:PROVEEDORID, CANTIDAD_RAM=:CANTIDA_DRAM, PROCESADORID=:PROCESADORID, IMEI=:IMEI, CAMARA_RESOLUCION=:CAMARA_RESOLUCION, ALMACENAMIENTO=:ALMACENAMIENTO, BATERIA=:BATERIA, DIMENSIONESID=:DIMENSIONESID ,  PESO=:PESO, SOID=:SOID, CANTIDAD_SIM=:CANTIDAD_SIM, COLORID=:COLORID, SKU=:SKU, EXISTENCIA=:EXISTENCIA WHERE CELULARID= :ID"
+        const bindParams = [MODELOID, NOMBRE_CELULAR, MARCAID, PRECIO, PROVEEDORID, CANTIDAD_RAM, PROCESADORID, IMEI, CAMARA_RESOLUCION, ALMACENAMIENTO, BATERIA, DIMENSIONESID, PESO, SOID, CANTIDAD_SIM, COLORID, SKU, EXISTENCIA, ID];
 
         let result = await BD.Open(updateQuery, bindParams, true);
         console.log(result);
@@ -140,7 +137,6 @@ router.put('/celulares/:ID', async (req, res) => {
         res.status(500).json({ error: "Error al actualizar el registro en la base de datos" });
     }
 });
-
 
 
 //=================================================================================================
