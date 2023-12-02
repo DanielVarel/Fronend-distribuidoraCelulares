@@ -65,19 +65,14 @@ function mostrarClientes() {
     
     let tabla = '';
     for (let i = 0; i < clientes.length; i++) {
-        tabla += `<tr class="detalles-tabla" onclick="abrirVentanaModal(${i})">
-                    <td class="checkbox-tama">
-                        <div class="checkbox-apple">
-                            <input class="yep" id="check-apple-${i}" type="checkbox">
-                            <label for="check-apple-${i}"></label>
-                        </div>
-                    </td>
+        tabla += `<tr class="detalles-tabla">
                     <td>${clientes[i].ID}</td>
                     <td><p>${clientes[i].P_NOMRE}</p></td>
                     <td>${clientes[i].email}</td>
                     <td>${clientes[i].phoneNumber}</td>
                     <td>
-                    <button style="width=100px" onclick="eliminarUsuario(${i})">Eliminar</button>
+                    <button style="width=100px" onclick="eliminarCliente(${i})">Eliminar</button>
+                    <button style="width=100px" >Editar</button>
                     </td>
                 </tr>`;
     }
@@ -86,7 +81,6 @@ function mostrarClientes() {
         <div class="card">
             <table border>
                 <tr class="detalles-tabla">
-                    <th></th>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Email</th>
@@ -128,12 +122,6 @@ function agregarCliente() {
     document.getElementById('formularioClientes').reset();
 }
 
-function eliminarUsuario(index) {
-    usuarioRegistrados.splice(index, 1);
-    mostrarClientes(usuarioRegistrados);
-}
-
-
 // Función para eliminar un cliente
 function eliminarCliente(index) {
     usuarioRegistrados.splice(index, 1);
@@ -150,46 +138,11 @@ function buscarCliente() {
     mostrarClientes(resultados);
 }
 
-// Variable para almacenar el índice del cliente seleccionado
-let clienteSeleccionadoIndex = null;
-
-// Función para mostrar los detalles del cliente en el modal
-function abrirVentanaModal(index) {
-  clienteSeleccionadoIndex = index;
-  const cliente = usuarioRegistrados[index];
-
-  document.querySelector("#miVentanaModal .modal-inf").innerHTML = `
-    <p><i class="fa-solid fa-id-card-clip"></i> ${cliente.id}</p>
-    <p><i class="fa-solid fa-user"></i> ${cliente.name}</p>
-    <p><i class="fa-solid fa-envelope"></i> ${cliente.email}</p>
-    <p><i class="fa-solid fa-phone"></i> ${cliente.phoneNumber}</p>
-  `;
-
-  miVentanaModal.style.display = "block";
-}
-
-
 
 
 // // Mostrar clientes al cargar la página
 // mostrarClientes(usuarioRegistrados);
 
 
-///////
-
 //Fin agregado K
 
-
-
-// Cierra la ventana modal cuando se hace clic afuera de ella
-window.onclick = function(event) {
-    if (event.target == miVentanaModal) {
-    miVentanaModal.style.display = "none";
-  }
-}
-
-// Cierra la ventana modal cuando se hace clic en el botón de cerrar
-var botonCerrar = document.getElementsByClassName("cerrar")[0];
-botonCerrar.onclick = function() {
-  miVentanaModal.style.display = "none";
-}

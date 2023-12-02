@@ -52,6 +52,7 @@ th{
     border-bottom: 1px solid rgb(221, 221, 221);
     margin: auto;
     font-family: 'Manrope', sans-serif;
+    text-align: center;
 }
 td{
     width: 400px;
