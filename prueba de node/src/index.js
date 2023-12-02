@@ -7,7 +7,7 @@ const router = require("../routes/routes.js");
 const clientes = require("../routes/clientes-routers.js");
 const celulares = require("../routes/celulares-routers.js");
 const marcas = require("../routes/marca-routers.js");
-
+const modelos = require("../routes/modelo-routers.js");
 
 /**Configuraciones**/
 app.set('port', 3000);
@@ -21,6 +21,7 @@ app.use(router)
 app.use(clientes)
 app.use(celulares)
 app.use(marcas)
+app.use(modelos)
 
 app.listen(app.get('port'), ()=>{
     console.log("server status on port en 3000");
