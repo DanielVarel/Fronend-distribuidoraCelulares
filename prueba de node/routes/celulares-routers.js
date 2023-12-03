@@ -11,7 +11,7 @@ router.get('/', (req,res)=>{
 // devolver todos los registros de celulares
 router.get('/celulares', async (req, res) => {
     const celulares = [];
-    sql="select * from celulares";
+    sql="SELECT celulares.celularID,  celulares.nombre_celular, modelo.nombre_modelo, marca.nombre_marca, proveedor.nombre_proveedor, celulares.cantidad_ram, procesador.nombre_procesador, celulares.imei, celulares.camara_resolucion, celulares.almacenamiento, celulares.bateria, celulares.dimensionesid, celulares.peso, celulares.cantidad_sim, color.nombre_color, celulares.sku, celulares.existencia, so.nombre_so, celulares.precio  FROM celulares INNER JOIN modelo ON modelo.modeloid = celulares.modeloid INNER JOIN marca ON marca.marcaid = celulares.marcaid INNER JOIN proveedor ON proveedor.proveedorid = celulares.proveedorid INNER JOIN procesador ON procesador.procesadorid = celulares.procesadorid INNER JOIN color ON color.colorID = celulares.colorid INNER JOIN so ON so.soid = celulares.soid";
 
     let result = await BD.Open(sql,[],false);
     console.log(result.rows);
@@ -21,22 +21,24 @@ router.get('/celulares', async (req, res) => {
     result.rows.map(celular=>{
         let userSchema = {
             "CelularID": celular[0],
-            "Modelo": celular[1],
-            "Nombre_celular": celular[2],
+            "Nombre_celular": celular[1],
+            "Modelo": celular[2],
             "Marca": celular[3],
-            "Precio": celular[4],
-            "proveedor": celular[5],
-            "Cantidad_Ram": celular[6],
-            "Procesador": celular[7],
-            "EMEI": celular[8], 
-            "Resolucion_camara": celular[9],
-            "Almacenamiento": celular[10],
-            "Bateria": celular[11],
-            "Dimensiones": celular[12],
-            "Peso": celular[13],
-            "Sistema_Operativo": celular[14],
-            "Color": celular[15],
-            "SKU": celular[16],
+            "proveedor": celular[4],
+            "Cantidad_Ram": celular[5],
+            "Procesador": celular[6],
+            "EMEI": celular[7],
+            "Resolucion_camara": celular[8],
+            "Almacenamiento": celular[9],
+            "Bateria": celular[10],
+            "Dimensiones": celular[11],
+            "Peso": celular[12],
+            "Cantidad_sim": celular[13],
+            "Color": celular[14],
+            "SKU": celular[15],
+            "EXISTENCIAS" : celular[16],
+            "Sistema_Operativo": celular[17],
+            "Precio": celular[18],    
         }
         celulares.push(userSchema)
     });
@@ -94,6 +96,7 @@ router.get('/celulares/:ID', async (req, res) => {
 //=================================================================================================
 //insertar un nuevo registro
 router.post('/celulares', async (req, res) => {
+
     const {CELULARID, MODELOID, NOMBRE_CELULAR, MARCAID, PRECIO, PROVEEDORID, CANTIDAD_RAM, PROCESADORID, IMEI, CAMARA_RESOLUCION, ALMACENAMIENTO, BATERIA, DIMENSIONESID, PESO, SOID, CANTIDAD_SIM, COLORID, SKU, EXISTENCIA } = req.body;
 
     console.log(req.body)
@@ -101,9 +104,9 @@ router.post('/celulares', async (req, res) => {
     try {
 
 
-        const sql = "INSERT INTO celulares (CELULARID, MODELOID, NOMBRE_CELULAR, MARCAID, PRECIO, PROVEEDORID, CANTIDAD_RAM, PROCESADORID, IMEI, CAMARA_RESOLUCION, ALMACENAMIENTO, BATERIA, DIMENSIONESID, PESO, SOID, CANTIDAD_SIM, COLORID, SKU, EXISTENCIA) VALUES (:CELULARID, :MODELOID, :NOMBRE_CELULAR, :MARCAID, :PRECIO, :PROVEEDORID, :CANTIDAD_RAM, :PROCESADORID, :IMEI, :CAMARA_RESOLUCION, :ALMACENAMIENTO, :BATERIA, :DIMENSIONESID, :PESO, :SOID, :CANTIDAD_SIM, :COLORID, :SKU, :EXISTENCIA)";
+        const sql = "INSERT INTO celulares (MODELOID, NOMBRE_CELULAR, MARCAID, PRECIO, PROVEEDORID, CANTIDAD_RAM, PROCESADORID, IMEI, CAMARA_RESOLUCION, ALMACENAMIENTO, BATERIA, DIMENSIONESID, PESO, SOID, CANTIDAD_SIM, COLORID, SKU, EXISTENCIA) VALUES (:MODELOID, :NOMBRE_CELULAR, :MARCAID, :PRECIO, :PROVEEDORID, :CANTIDAD_RAM, :PROCESADORID, :IMEI, :CAMARA_RESOLUCION, :ALMACENAMIENTO, :BATERIA, :DIMENSIONESID, :PESO, :SOID, :CANTIDAD_SIM, :COLORID, :SKU, :EXISTENCIA)";
         console.log('Consulta SQL:', sql);
-        const bindParams = [CELULARID, MODELOID, NOMBRE_CELULAR, MARCAID, PRECIO, PROVEEDORID, CANTIDAD_RAM, PROCESADORID, IMEI, CAMARA_RESOLUCION, ALMACENAMIENTO, BATERIA, DIMENSIONESID, PESO, SOID, CANTIDAD_SIM, COLORID, SKU, EXISTENCIA];
+        const bindParams = [ MODELOID, NOMBRE_CELULAR, MARCAID, PRECIO, PROVEEDORID, CANTIDAD_RAM, PROCESADORID, IMEI, CAMARA_RESOLUCION, ALMACENAMIENTO, BATERIA, DIMENSIONESID, PESO, SOID, CANTIDAD_SIM, COLORID, SKU, EXISTENCIA];
 
         let result = await BD.Open(sql, bindParams, true);
         console.log(result);

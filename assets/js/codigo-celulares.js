@@ -21,6 +21,7 @@ function mostrarCelularesEnTabla(celulares) {
     cuerpoTabla.innerHTML = ''; // Limpiamos el contenido actual de la tabla
 
     celulares.forEach(celular => {
+        console.log(celular)
         //Para Concatenar nombre
         //const nombreCompleto = `${empleado.P_NOMBRE} ${empleado.S_NOMBRE} ${empleado.P_APELLIDO} ${empleado.S_APELLIDO}`;
         
@@ -30,16 +31,16 @@ function mostrarCelularesEnTabla(celulares) {
 
         const fila = document.createElement('tr');
         fila.innerHTML = `
-            <td>${celular.celularID}</td>
-            <td>${celular.MODELO}</td>
-            <td>${celular.NOMBRE_CELULAR}</td>
-            <td>${celular.MARCA}</td>
-            <td>${celular.PRECIO}</td>
-            <td>${celular.RESOLUCION_CAMARA}</td>
-            <td>${celular.ALMACENAMIENTO}</td>
-            <td>${celular.SISTEMA_OPERATIVO}</td>
-            <td>${celular.COLOR}</td>
-            <td>${celular.CANTIDAD_RAM}</td>
+            <td>${celular.CelularID}</td>
+            <td>${celular.Modelo}</td>
+            <td>${celular.Nombre_celular}</td>
+            <td>${celular.Marca}</td>
+            <td>${celular.Precio}</td>
+            <td>${celular.Resolucion_camara}</td>
+            <td>${celular.Almacenamiento            }</td>
+            <td>${celular.Sistema_Operativo}</td>
+            <td>${celular.Color}</td>
+            <td>${celular.Cantidad_Ram}</td>
             <td>
             <button type="button">Eliminar</button>
             <button type="button">Editar</button>
