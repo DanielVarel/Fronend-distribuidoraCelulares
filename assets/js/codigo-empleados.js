@@ -25,6 +25,7 @@ function mostrarEmpleadosEnTabla(empleados) {
         //Para concatenar horario
         const horario = `${empleado.HORA_ENTRADA} <span>-</span> ${empleado.HORA_SALIDA}`;
 
+
         const fila = document.createElement('tr');
         fila.innerHTML = `
             <td>${empleado.empleadoID}</td>

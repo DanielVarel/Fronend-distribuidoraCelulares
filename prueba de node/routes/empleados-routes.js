@@ -3,7 +3,7 @@ const router = Router();
 const BD = require('../config/config');
 
 
-router.get('/', (req,res)=>{
+router.get('/', (req,res)=> {
     res.status(200).json({
         message: "este mensaje es desde el servidor"
     })
@@ -12,7 +12,11 @@ router.get('/', (req,res)=>{
 // devolver todos los registros
 router.get('/empleados', async (req, res) => {
     const empleados = [];
-    sql="select * from EMPLEADO";
+    sql="select empleadoID, dni, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo, "+
+    "DEPARTAMENTO.nombre_departamento AS nom_departamento, CARGO.nombre_cargo AS nom_cargo, fechaIngreso, direccionID, "+
+    "hora_entrada, hora_salida from EMPLEADO INNER JOIN DEPARTAMENTO on "+
+    "DEPARTAMENTO.departamentoID = EMPLEADO.departamentoID "+
+    "INNER JOIN CARGO ON EMPLEADO.cargoID = CARGO.cargoID";
 
     let result = await BD.Open(sql,[],false);
     console.log(result.rows);
