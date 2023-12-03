@@ -15,6 +15,7 @@ const departamento = require("../routes/departamento-router.js");
 const detallesVenta = require("../routes/detalleVenta-routers.js");
 const dimensiones = require("../routes/dimensiones-router.js");
 const empleados = require("../routes/empleados-routes.js");
+const estadoGarantia = require("../routes/estadoGarantia-router.js")
 
 const garantias = require("../routes/garantia-routes.js");
 const pais = require("../routes/pais-route.js");
@@ -52,6 +53,7 @@ app.use(departamento)
 app.use(detallesVenta)
 app.use(dimensiones)
 app.use(empleados)
+app.use(estadoGarantia)
 app.use(tipoPago)
 app.use(garantias)
 app.use(pais)
