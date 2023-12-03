@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venta</title>
+    <title>Devoluciones</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/estilos-ventas.css">
+    <link rel="stylesheet" href="assets/css/estilos-devoluciones.css">
 </head>
 
 <body>
@@ -30,33 +30,32 @@
                 
 
 
-                <div id="nueva-venta-formulario">
-                    <button type="button" class="btn btn btn-primary" id="nueva-venta" data-bs-toggle="modal"
-                        data-bs-target=#modalVenta>Nueva Venta</button>
+                <div id="nueva-devolucion-formulario">
+                    <button type="button" class="btn btn btn-primary" id="nueva-devolucion" data-bs-toggle="modal"
+                        data-bs-target=#modalDevolucion>Nueva Devolucion</button>
                 </div>
 
 
                 <div class="contenedor">
 
-                    <h4>Lista de Ventas</h4>
-                        <input type="text" id="buscador" placeholder="Buscar por nombre o ID" onkeyup="buscarVenta()">
-                            <div class="seccion-ventas" id="seccion-ventas">
+                    <h4>Lista de Devoluciones</h4>
+                        <input type="text" id="buscador" placeholder="Buscar por nombre o ID" onkeyup="buscarDevolucion()">
+                            <div class="seccion-devoluciones" id="seccion-devoluciones">
                         </div>
                     </div>
-                    <table id="tabla-ventas" border="1" style="width: 100%;">
+                    <table id="tabla-devoluciones" border="1" style="width: 100%;">
                         <thead style="text-align: center;">
                             <tr>
-                                <th>Venta ID</th>
                                 <th>Empleado</th>
                                 <th>Cliente</th>
                                 <th>Fecha</th>
-                                <th>Cantidad de telefonos</th>
-                                <th>Total pagado</th>
-                                <th>Ver factura</th>
+                                <th>Cantidad de telefonos devueltos</th>
+                                <th>Numero de orden original</th>
+                                <th>ver detalles</th>
                             </tr>
                         </thead>
                         <tbody id="cuerpo-tabla">
-                            <!-- INSERTAR DATOS DE LAS VENTAS -->
+                            <!-- INSERTAR DATOS DE LAS DEVOLUCIONES -->
                         </tbody>
                     </table>
 
@@ -66,16 +65,16 @@
         </div>
     </div>
 
-    <!-- Modal VENTA-->
-    <div class="modal fade" id="modalVenta" tabindex="-1" aria-labelledby="modalVentasLabel" aria-hidden="true">
+    <!-- Modal DEVOLUCION-->
+    <div class="modal fade modal-xl" id="modalDevolucion" tabindex="-1" aria-labelledby="modalDevolucionesLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-center">
             <div class="modal-content">
                 <div class="modal-header" style="color: white; background-color: #00B3CA;">
-                    <h1 class="modal-title fs-5" id="modalVentasLabel">NUEVA VENTA</h1>
+                    <h1 class="modal-title fs-5" id="modalDevolucionesLabel">NUEVA DEVOLUCION</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formularioVenta">
+                    <form id="formularioDevolucion">
                         <div class="row">
                             <div class="col-md-6">     
                                 <label for="nombre">Codigo de empleado:</label>
@@ -87,46 +86,35 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-auto">
-                                <label for="modelo" class="form-label">Modelo</label>
-                                <input class="form-control" list="modeloOptions" id="modeloID" placeholder="Type to search...">
-                                <datalist id="modeloOptions">
-                                <option value="galaxy s20">
-                                <option value="IP 15 PRO MAX">
-                                <option value="Google pixel 8">
-                                <option value="galaxy s23 ultra">
-                                <option value="IP 14 PRO">
-                                </datalist>
-                              </div>
-                              <div class="col-auto">
-                                <label for="cantidad" class="visually-hidden">Cantidad:</label>
-                                <input type="number" class="form-control" id="cantidad">
-                              </div>
-                              <div class="col-auto">
-                                <button type="button" class="btn btn-primary mb-3">Agregar</button>
-                              </div>
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">IMEI</th>
+                                    <th scope="col">Marca</th>
+                                    <th scope="col">Modelo</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Motivo de la devolucion</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">353486759726157</th>
+                                    <td>Samsung</td>
+                                    <td>Galaxy s23 ultra</td>
+                                    <td>negro</td>
+                                  </tr>
+                                  <!--INSERTAR TELEFONOS A DEVOLVER -->
+                                </tbody>
+                              </table>
                         </div>
                         <div class="row">
-                            <table id="tabla-celulares" border="1" style="width: 100%;">
-                                <thead style="text-align: center;">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Modelo</th>
-                                        <th>Marca</th>
-                                        <th>Precio</th>
-                                        <th>Color</th>
-                                        <th>Cantidad</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="cuerpo-tabla">
-                                    <!-- MOSTRAR LOS CELULARES A COMPRAR -->
-                                </tbody>
-                            </table>
+                            <button type="button" class="btn btn-primary">Agregar telefono</button>
                         </div>
                     </form>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Facturar</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
                     </div> 
                 </div>
             </div>
