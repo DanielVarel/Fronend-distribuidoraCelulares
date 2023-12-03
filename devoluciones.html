@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devoluciones</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos-devoluciones.css">
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="header" style="height: 40px;">
+
+        </div>
+
+        <div class="container">
+            <div class="menuColumn">
+                <div class="itemList"><i class="fa-solid fa-sidebar"></i><a href="clientes.html">Clientes</a></div>
+                <div class="itemList"><a href="venta.html">Ventas</a></div>
+                <div class="itemList"><a href="devoluciones.html">Devoluciones</a></div>
+                <div class="itemList"><i class="fa-sharp fa-regular fa-moped"></i><a  href="empleados.html">Empleados</a></div>
+                <div class="itemList"><i class="fa-sharp fa-regular fa-moped"></i><a  href="proveedores.html">Proveedores</a></div>
+            </div>
+            <div class="frames">
+                
+
+
+                <div id="nueva-devolucion-formulario">
+                    <button type="button" class="btn btn btn-primary" id="nueva-devolucion" data-bs-toggle="modal"
+                        data-bs-target=#modalDevolucion>Nueva Devolucion</button>
+                </div>
+
+
+                <div class="contenedor">
+
+                    <h4>Lista de Devoluciones</h4>
+                        <input type="text" id="buscador" placeholder="Buscar por nombre o ID" onkeyup="buscarDevolucion()">
+                            <div class="seccion-devoluciones" id="seccion-devoluciones">
+                        </div>
+                    </div>
+                    <table id="tabla-devoluciones" border="1" style="width: 100%;">
+                        <thead style="text-align: center;">
+                            <tr>
+                                <th>Empleado</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Cantidad de telefonos devueltos</th>
+                                <th>Numero de orden original</th>
+                                <th>ver detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla">
+                            <!-- INSERTAR DATOS DE LAS DEVOLUCIONES -->
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal DEVOLUCION-->
+    <div class="modal fade modal-xl" id="modalDevolucion" tabindex="-1" aria-labelledby="modalDevolucionesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header" style="color: white; background-color: #00B3CA;">
+                    <h1 class="modal-title fs-5" id="modalDevolucionesLabel">NUEVA DEVOLUCION</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioDevolucion">
+                        <div class="row">
+                            <div class="col-md-6">     
+                                <label for="nombre">Codigo de empleado:</label>
+                                <input type="text" id="empleadoID" name="ID_empleado" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nombre">Codigo de cliente:</label>
+                                <input type="text" id="clienteID" name="ID_cliente" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">IMEI</th>
+                                    <th scope="col">Marca</th>
+                                    <th scope="col">Modelo</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Motivo de la devolucion</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">353486759726157</th>
+                                    <td>Samsung</td>
+                                    <td>Galaxy s23 ultra</td>
+                                    <td>negro</td>
+                                  </tr>
+                                  <!--INSERTAR TELEFONOS A DEVOLVER -->
+                                </tbody>
+                              </table>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-primary">Agregar telefono</button>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin Modal -->
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
