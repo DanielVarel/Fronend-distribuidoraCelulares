@@ -1,6 +1,8 @@
 
 //Agregado K
 
+//probando
+
 // Esta función obtiene los datos de los clientes desde el servidor y los muestra en la tabla
 function obtenerCelulares() {
     fetch('http://localhost:3000/celulares')
