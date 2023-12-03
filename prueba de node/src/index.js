@@ -15,6 +15,7 @@ const departamento = require("../routes/departamento-router.js");
 const detallesVenta = require("../routes/detalleVenta-routers.js");
 const dimensiones = require("../routes/dimensiones-router.js");
 const empleados = require("../routes/empleados-routes.js");
+const estadoGarantia = require("../routes/estadoGarantia-router.js")
 
 const garantias = require("../routes/garantia-routes.js");
 const pais = require("../routes/pais-route.js");
@@ -24,6 +25,12 @@ const so = require("../routes/so-routers.js");
 const tiempoGarantia = require("../routes/tiempoGarantia-route.js");
 const tipoPago = require("../routes/tipoPago-router.js");
 const ventas = require("../routes/venta-routers.js");
+
+const compra = require("../routes/compra-routers.js");
+const factura = require("../routes/factura-routers.js");
+const devolucion = require("../routes/devolucion-routers.js")
+const detalleDevolucion = require("../routes/detalleDevolucion-routers.js")
+const detalleCompra = require("../routes/detalleCompra-routers.js")
 
 
 /**Configuraciones**/
@@ -46,6 +53,7 @@ app.use(departamento)
 app.use(detallesVenta)
 app.use(dimensiones)
 app.use(empleados)
+app.use(estadoGarantia)
 app.use(tipoPago)
 app.use(garantias)
 app.use(pais)
@@ -53,8 +61,12 @@ app.use(procesador)
 app.use(proveedores)
 app.use(so)
 app.use(tiempoGarantia)
-
 app.use(ventas)
+app.use(compra)
+app.use(detalleCompra)
+app.use(factura)
+app.use(devolucion)
+app.use(detalleDevolucion)
 
 app.listen(app.get('port'), ()=>{
     console.log("server status on port en 3000");
