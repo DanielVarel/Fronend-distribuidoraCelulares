@@ -1,11 +1,11 @@
-var usuarioRegistrados = [];
+
 
 // devuelve todos los registros
-function  obtenerClientes(){
+/*function  obtenerClientes(){
     fetch(`http://localhost:3000/clientes`, {
         method: 'get',
         headers: {"Content-Type": "application/json"},
-      })
+    })
     .then((respuesta) => respuesta.json())
     .then((datos) => {
         usuarioRegistrados = datos;
@@ -19,6 +19,7 @@ function  obtenerClientes(){
 
 obtenerClientes();
 
+*/
 
 
 // fetch(`http://localhost:3000/clientes`, {
@@ -58,39 +59,54 @@ obtenerClientes();
 
 //Agregado K
 
-
-// Función para mostrar los clientes en la tabla
-function mostrarClientes() {
-    let clientes = usuarioRegistrados
-    
-    let tabla = '';
-    for (let i = 0; i < clientes.length; i++) {
-        tabla += `<tr class="detalles-tabla">
-                    <td>${clientes[i].ID}</td>
-                    <td><p>${clientes[i].P_NOMRE}</p></td>
-                    <td>${clientes[i].email}</td>
-                    <td>${clientes[i].phoneNumber}</td>
-                    <td>
-                    <button style="width=100px" onclick="eliminarCliente(${i})">Eliminar</button>
-                    <button style="width=100px" >Editar</button>
-                    </td>
-                </tr>`;
-    }
-
-    document.getElementById('seccion-clientes').innerHTML = `
-        <div class="card">
-            <table border>
-                <tr class="detalles-tabla">
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Número de teléfono</th>
-                    <th>Acciones</th>
-                </tr>
-                ${tabla}
-            </table>
-        </div>`;
+// Esta función obtiene los datos de los clientes desde el servidor y los muestra en la tabla
+function obtenerClientes() {
+    fetch('http://localhost:3000/clientes')
+        .then(response => response.json())
+        .then(data => {
+            mostrarClientesEnTabla(data.clientes);
+        })
+        .catch(error => {
+            console.error('Error al obtener los clientes:', error);
+        });
 }
+
+// Esta función muestra los datos de los clientes en la tabla HTML
+function mostrarClientesEnTabla(clientes) {
+    const cuerpoTabla = document.getElementById('cuerpo-tabla');
+    cuerpoTabla.innerHTML = ''; // Limpiamos el contenido actual de la tabla
+
+    clientes.forEach(cliente => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td>${cliente.ID}</td>
+            <td>${cliente.DNI}</td>
+            <td>${cliente.P_NOMBRE}</td>
+            <td>${cliente.S_NOMBRE}</td>
+            <td>${cliente.P_APELLIDO}</td>
+            <td>${cliente.S_APELLIDO}</td>
+            <td>${cliente.TELEFONO}</td>
+            <td>${cliente.CORREO}</td>
+            <td>
+            <button type="button">Eliminar</button>
+            <button type="button">Editar</button>
+            </td>
+        `;
+        cuerpoTabla.appendChild(fila);
+    });
+}
+
+// Llamamos a la función para obtener y mostrar los clientes al cargar la página
+obtenerClientes();
+
+
+//POSIBLE POST
+// Función para agregar un nuevo cliente
+
+
+//FINPOST
+
+
 
 // Función para agregar un nuevo cliente
 function agregarCliente() {
