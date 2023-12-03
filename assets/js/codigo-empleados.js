@@ -19,8 +19,12 @@ function mostrarEmpleadosEnTabla(empleados) {
     cuerpoTabla.innerHTML = ''; // Limpiamos el contenido actual de la tabla
 
     empleados.forEach(empleado => {
+        //Para Concatenar nombre
         const nombreCompleto = `${empleado.P_NOMBRE} ${empleado.S_NOMBRE} ${empleado.P_APELLIDO} ${empleado.S_APELLIDO}`;
         
+        //Para concatenar horario
+        const horario = `${empleado.HORA_ENTRADA} <span>-</span> ${empleado.HORA_SALIDA}`;
+
         const fila = document.createElement('tr');
         fila.innerHTML = `
             <td>${empleado.empleadoID}</td>
@@ -32,7 +36,7 @@ function mostrarEmpleadosEnTabla(empleados) {
             <td>${empleado.CARGO}</td>
             <td>${empleado.FECHA_INGRESO}</td>
             <td>${empleado.DIRECCION}</td>
-            <td>${empleado.HORA_ENTRADA}</td>
+            <td>${horario}</td>
             <td>
             <button type="button">Eliminar</button>
             <button type="button">Editar</button>
