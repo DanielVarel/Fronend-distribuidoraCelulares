@@ -87,11 +87,11 @@ router.get('/empleados/:ID', async (req, res) => {
 
 //insertar un nuevo registro
 router.post('/empleados', async (req, res) => {
-    const {empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA} = req.body;
+    const {empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHAINGRESO, HORA_ENTRADA, HORA_SALIDA} = req.body;
 
     console.log(req.body)
 
-    if (!empleadoID ||!DNI || !P_NOMBRE || !S_NOMBRE ||  !P_APELLIDO || !S_APELLIDO || !TELEFONO || !CORREO || !DEPARTAMENTOID || !CARGOID || !FECHA_INGRESO || !HORA_ENTRADA || !HORA_SALIDA) {
+    if (!DNI || !P_NOMBRE || !S_NOMBRE ||  !P_APELLIDO || !S_APELLIDO || !TELEFONO || !CORREO || !DEPARTAMENTOID || !CARGOID || !FECHAINGRESO || !HORA_ENTRADA || !HORA_SALIDA) {
         return res.status(400).json({ error: "Todos los campos son requeridos" });
     }
 
@@ -104,9 +104,9 @@ router.post('/empleados', async (req, res) => {
         //     return res.status(400).json({ error: "Ya existe un registro con este ID" });
         // }
 
-        const sql = "INSERT INTO empleado (empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA) VALUES (:empleadoID,:DNI, :P_NOMBRE, :S_NOMBRE, :P_APELLIDO, :S_APELLIDO, :TELEFONO, :CORREO, :DEPARTAMENTOID, :CARGOID, :FECHA_INGRESO, :HORA_ENTRADA, :HORA_SALIDA)";
+        const sql = "INSERT INTO empleado (DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHAINGRESO, HORA_ENTRADA, HORA_SALIDA) VALUES (:DNI, :P_NOMBRE, :S_NOMBRE, :P_APELLIDO, :S_APELLIDO, :TELEFONO, :CORREO, :DEPARTAMENTOID, :CARGOID, :FECHAINGRESO, :HORA_ENTRADA, :HORA_SALIDA)";
         console.log('Consulta SQL:', sql);
-        const bindParams = [empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA];
+            const bindParams = [DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHAINGRESO, HORA_ENTRADA, HORA_SALIDA];
 
         let result = await BD.Open(sql, bindParams, true);
         console.log(result);
