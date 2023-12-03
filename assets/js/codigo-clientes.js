@@ -248,12 +248,24 @@ function eliminarCliente(index) {
 
 // Función para buscar un cliente por ID o nombre
 function buscarCliente() {
-    const input = document.getElementById('buscador').value.toLowerCase();
-    const resultados = usuarioRegistrados.filter(cliente =>
-        cliente.id.toLowerCase().includes(input) ||
-        cliente.name.toLowerCase().includes(input)
-    );
-    mostrarClientes(resultados);
+    const buscar = document.getElementById('buscador').value;
+    console.log(buscar);
+    
+        fetch(`http://localhost:3000/clientes-buscar/${buscar}`, {
+        method: 'get',
+        headers: {"Content-Type": "application/json"},
+        })
+        .then((respuesta) => respuesta.json())
+        .then((datos) => {
+            clientes = datos.clientes;
+            console.log(clientes)
+            mostrarClientesEnTabla(clientes);
+        })
+        .catch(error => {
+            console.log(error)
+        }); 
+
+
 }
 
 

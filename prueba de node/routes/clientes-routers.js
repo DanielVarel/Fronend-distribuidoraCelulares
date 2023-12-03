@@ -161,4 +161,38 @@ router.delete('/clientes/:ID', async (req, res) => {
     }
 });
 
+// buscar un cliente por DNI
+router.get('/clientes-buscar/:prefijo', async (req, res) => {
+    const prefijo = req.params.prefijo;
+    const clientes = [];
+
+    // Utiliza LIKE para buscar clientes que comienzan con el prefijo proporcionado
+    const sql = "SELECT * FROM clientes WHERE DNI LIKE :prefijo || '%'";
+    
+    try {
+        let result = await BD.Open(sql, [prefijo], false);
+
+        result.rows.map(clie => {
+            let userSchema = {
+                "ID": clie[0],
+                "DNI": clie[7],
+                "P_NOMBRE": clie[1],
+                "S_NOMBRE": clie[2],
+                "P_APELLIDO": clie[3],
+                "S_APELLIDO": clie[4],
+                "TELEFONO": clie[6],
+                "CORREO": clie[5]
+            };
+            clientes.push(userSchema);
+        });
+
+        res.json({ clientes });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error en el servidor");
+    }
+    console.log(clientes)
+});
+
+
 module.exports = router;
