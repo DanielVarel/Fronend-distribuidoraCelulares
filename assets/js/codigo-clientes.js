@@ -86,8 +86,8 @@ function mostrarClientesEnTabla(clientes) {
             <td>${cliente.CORREO}</td>
             <td>
             <button type="button" onclick="Eliminar(${cliente.ID})" > Eliminar</button>
-            <button type="button" class="btn btn btn-primary" id="nuevo-cliente" data-bs-toggle="modal"
-            data-bs-target=#modalClientes onclick="Editar(${cliente.ID})">Editar</button>
+            <button type="button" class="btn btn btn-primary" id="nuevo-cliente-editar" data-bs-toggle="modal"
+            data-bs-target=#modalEditar onclick="Editar(${cliente.ID})">Editar</button>
             </td>
         `;
         cuerpoTabla.appendChild(fila);
@@ -128,8 +128,8 @@ function Editar(id){
 
 function actualizar(cliente){
     console.log(cliente);
-    document.getElementById('modalClientesLabel').innerText  = ``;
-    document.getElementById('modalClientesLabel').innerText  = `ACTUALIZAR CLIENTE(${cliente.ID})`
+    document.getElementById('modalEditarLabel').innerText  = ``;
+    document.getElementById('modalEditarLabel').innerText  = `ACTUALIZAR CLIENTE(${cliente.ID})`
 
     document.getElementById('identidad').value = cliente.DNI;
     document.getElementById('p_nombre').value = cliente.P_NOMBRE;
@@ -199,7 +199,7 @@ function agregarCliente() {
             console.error('Error al agregar el cliente:', error);
         });
         // Limpiar los campos del formulario
-        document.getElementById('formularioClientes').reset();
+        document.getElementById('formularioClientesEditar').reset();
 }
 
 
