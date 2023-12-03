@@ -90,9 +90,8 @@ router.post('/empleados', async (req, res) => {
     const {empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHAINGRESO, HORA_ENTRADA, HORA_SALIDA} = req.body;
 
     console.log(req.body)
+   
     if (!DNI || !P_NOMBRE || !S_NOMBRE ||  !P_APELLIDO || !S_APELLIDO || !TELEFONO || !CORREO || !DEPARTAMENTOID || !CARGOID || !FECHAINGRESO || !HORA_ENTRADA || !HORA_SALIDA) {
-
-    if (!empleadoID ||!DNI || !P_NOMBRE || !S_NOMBRE ||  !P_APELLIDO || !S_APELLIDO || !TELEFONO || !CORREO || !DEPARTAMENTOID || !CARGOID || !FECHA_INGRESO || !HORA_ENTRADA || !HORA_SALIDA) {
         return res.status(400).json({ error: "Todos los campos son requeridos" });
     }
 
