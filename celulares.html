@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celulares</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos-empleados.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://kit.fontawesome.com/04db09d270.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/54de7e7a33.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header" style="height: 60px; margin-top: 20px;">
+            <div class="menu d-flex justify-content-center">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="clientes.html"><i class="fas fa-users"></i>Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-cash-register"></i>Ventas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="empleados.html"><i class="fas fa-user-tie"></i>Empleados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="proveedores.html"><i class="fas fa-truck"></i>Proveedores</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container-fluid h-100">
+
+            <div class="frames" style="height: 100%;">
+
+                <div id="nuevo-empleado-formulario"><!--id del formualrio-->
+                    <button type="button" class="btn btn btn-primary" id="nuevo-empleado" data-bs-toggle="modal"
+                        data-bs-target=#modalEmpleados>Nuevo Registro de Celular</button>
+                </div>
+
+                <div class="contenedor">
+
+                    <h4 style="padding-left: 20px;">Lista de Celulares</h4>
+                    <input type="text" id="buscador" placeholder="Buscar por nombre o ID" onkeyup="buscarEmpleado()">
+                    <div class="seccion-empleados" id="seccion-empleados">
+                        <!-- Aquí se mostrarán los proveedores filtrados -->
+                    </div>
+                </div>
+
+                <table id="tabla-empleados" border="1" style="width: 100%;">
+                    <thead style="text-align: center;">
+                        <tr>
+                            <th>ID</th>
+                            <th>Modelo</th>
+                            <th>Nombre Celular</th>
+                            <th>Marca</th>
+                            <th>Precio</th>
+                            <th>Resolucion Camara</th>
+                            <th>Almacenamiento</th>
+                            <th>Sistema Operativo</th>
+                            <th>Color</th>
+                            <th>Cantidad Ram</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla">
+                        <!-- Aquí se mostrarán los datos de los celulares -->
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Modal Registro-->
+    <div class="modal fade" id="modalEmpleados" tabindex="-1" aria-labelledby="modalEmpleadosLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header" style="color: white; background-color: #00B3CA;">
+                    <h1 class="modal-title fs-5" id="modalEmpleadosLabel">NUEVO CELULAR</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioEmpleado">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="identidad">Modelo:</label>
+                                <input type="text" id="modelo" name="identidad" required>
+                                <label for="p_nombre">Nombre:</label>
+                                <input type="text" id="nombre" name="p_nombre" required>
+                                <label for="s_nombre">Marca:</label>
+                                <input type="text" id="marca" name="s_nombre" required>
+                                <label for="p_apellido">Precio:</label>
+                                <input type="text" id="precio" name="p_apellido" required>
+                                <label for="s_apellido">Proveedor:</label>
+                                <input type="text" id="proveedor" name="s_apellido" required>
+                                <label for="s_apellido">Peso:</label>
+                                <input type="text" id="peso" name="s_apellido" required>
+                                <label for="s_apellido">Sistema Operativo:</label>
+                                <input type="text" id="so" name="s_apellido" required>
+                                <label for="s_apellido">Color:</label>
+                                <input type="text" id="color" name="s_apellido" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nombre">Cantidad Ram:</label>
+                                <input type="number" id="ram" name="telefono" required>
+                                <label for="correo">Procesador:</label>
+                                <input type="email" id="preocesador" name="email" required>
+                                <label for="departamento">EMEI</label>
+                                <input type="text" id="emei" name="departamento" required>
+                                <label for="cargo">Resolucion Camra</label>
+                                <input type="text" id="camara" name="cargo" required>
+                                <label for="fecha_ingreso">Almacenamiento</label>
+                                <input type="text" id="almacenamiento" name="fecha_ingreso" required>
+                                <label for="hora_entrada">Bateria</label>
+                                <input type="text" id="bateria" name="hora_entrada" required>
+                                <label for="hora_salida">dimensiones</label>
+                                <input type="text" id="dimensiones" name="hora_salida" required>
+                                <label for="s_apellido">SKU:</label>
+                                <input type="text" id="sku" name="s_apellido" required>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="actualizar" onclick="agregarCelular">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin Modal -->
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/codigo-celulares.js"></script>
+
+
+</body>
+
+</html>
