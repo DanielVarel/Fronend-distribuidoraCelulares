@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos-ventas.css">
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="header" style="height: 40px;">
+
+        </div>
+
+        <div class="container">
+            <div class="menuColumn">
+                <div class="itemList"><i class="fa-solid fa-sidebar"></i><a href="clientes.html">Clientes</a></div>
+                <div class="itemList"><a href="venta.html">Ventas</a></div>
+                <div class="itemList"><i class="fa-sharp fa-regular fa-moped"></i><a  href="empleados.html">Empleados</a></div>
+                <div class="itemList"><i class="fa-sharp fa-regular fa-moped"></i><a  href="proveedores.html">Proveedores</a></div>
+            </div>
+            <div class="frames">
+                
+
+
+                <div id="nueva-venta-formulario">
+                    <button type="button" class="btn btn btn-primary" id="nueva-venta" data-bs-toggle="modal"
+                        data-bs-target=#modalVenta>Nueva Venta</button>
+                </div>
+
+
+                <div class="contenedor">
+
+                    <h4>Lista de Ventas</h4>
+                        <input type="text" id="buscador" placeholder="Buscar por nombre o ID" onkeyup="buscarVenta()">
+                            <div class="seccion-ventas" id="seccion-ventas">
+                        </div>
+                    </div>
+                    <table id="tabla-ventas" border="1" style="width: 100%;">
+                        <thead style="text-align: center;">
+                            <tr>
+                                <th>Venta ID</th>
+                                <th>Empleado</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Cantidad de telefonos</th>
+                                <th>Total pagado</th>
+                                <th>Ver factura</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla">
+                            <!-- INSERTAR DATOS DE LAS VENTAS -->
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal VENTA-->
+    <div class="modal fade" id="modalVenta" tabindex="-1" aria-labelledby="modalVentasLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header" style="color: white; background-color: #00B3CA;">
+                    <h1 class="modal-title fs-5" id="modalVentasLabel">NUEVA VENTA</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioVenta">
+                        <div class="row">
+                            <div class="col-md-6">     
+                                <label for="nombre">Codigo de empleado:</label>
+                                <input type="text" id="empleadoID" name="ID_empleado" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nombre">Codigo de cliente:</label>
+                                <input type="text" id="clienteID" name="ID_cliente" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                <label for="modelo" class="form-label">Modelo</label>
+                                <input class="form-control" list="modeloOptions" id="modeloID" placeholder="Type to search...">
+                                <datalist id="modeloOptions">
+                                <option value="galaxy s20">
+                                <option value="IP 15 PRO MAX">
+                                <option value="Google pixel 8">
+                                <option value="galaxy s23 ultra">
+                                <option value="IP 14 PRO">
+                                </datalist>
+                              </div>
+                              <div class="col-auto">
+                                <label for="cantidad" class="visually-hidden">Cantidad:</label>
+                                <input type="number" class="form-control" id="cantidad">
+                              </div>
+                              <div class="col-auto">
+                                <button type="button" class="btn btn-primary mb-3">Agregar</button>
+                              </div>
+                        </div>
+                        <div class="row">
+                            <table id="tabla-celulares" border="1" style="width: 100%;">
+                                <thead style="text-align: center;">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Modelo</th>
+                                        <th>Marca</th>
+                                        <th>Precio</th>
+                                        <th>Color</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpo-tabla">
+                                    <!-- MOSTRAR LOS CELULARES A COMPRAR -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Facturar</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin Modal -->
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
