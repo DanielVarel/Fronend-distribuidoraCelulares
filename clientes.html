@@ -139,7 +139,8 @@
         <div class="modal-dialog modal-dialog-center">
             <div class="modal-content">
                 <div class="modal-header" style="color: white; background-color: #cac700;">
-                    <h1 class="modal-title fs-5" id="modalEditarLabel"> EDITAR </h1>
+                    <h1 class="modal-title fs-5" id="modalEditarLabel"> ACTUALIZAR CLIENTE -> </h1>
+                    <h4 class="modal-title fs-5" id="modalEditarLabel1">numero</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -147,28 +148,28 @@
                         <div class="row">
                             <div class="col-md-6">     
                                 <label for="identidad">Identidad:</label>
-                                <input type="text" id="identidad" name="identidad" required>  
+                                <input type="text" id="identidad1" name="identidad" required>  
                                 <label for="p_nombre">Primer Nombre:</label>
-                                <input type="text" id="p_nombre" name="p_nombre" required>
+                                <input type="text" id="p_nombre1" name="p_nombre" required>
                                 <label for="s_nombre">Segundo Nombre:</label>
-                                <input type="text" id="s_nombre" name="s_nombre" required>
+                                <input type="text" id="s_nombre1" name="s_nombre" required>
                                 
                             </div>
                             <div class="col-md-6">
                                 <label for="p_apellido">Primer Apellido:</label>
-                                <input type="text" id="p_apellido" name="p_apellido" required>
+                                <input type="text" id="p_apellido1" name="p_apellido" required>
                                 <label for="s_apellido">Segundo Apellido:</label>
-                                <input type="text" id="s_apellido" name="s_apellido" required>
+                                <input type="text" id="s_apellido1" name="s_apellido" required>
                                 <label for="nombre">Telefono:</label>
-                                <input type="number" id="telefono" name="telefono" required>
+                                <input type="number" id="telefono1" name="telefono" required>
                                 <label for="correo">Email:</label>
-                                <input type="email" id="email" name="email" required>
+                                <input type="email" id="email1" name="email" required>
                             </div>
                         </div>
                     </form>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" id="actualizar" onclick="agregarCliente()">Save</button>
+                        <button type="button" class="btn btn-primary" id="actualizar" onclick="actualizarCliente()">Update</button>
                     </div> 
                 </div>
             </div>

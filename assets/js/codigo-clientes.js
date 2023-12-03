@@ -125,32 +125,48 @@ function Editar(id){
 
 }
 
-
 function actualizar(cliente){
-    console.log(cliente);
-    document.getElementById('modalEditarLabel').innerText  = ``;
-    document.getElementById('modalEditarLabel').innerText  = `ACTUALIZAR CLIENTE(${cliente.ID})`
+    document.getElementById('modalEditarLabel1').innerText  = ``;
+    document.getElementById('modalEditarLabel1').innerText  = `${cliente.ID}`
 
-    document.getElementById('identidad').value = cliente.DNI;
-    document.getElementById('p_nombre').value = cliente.P_NOMBRE;
-    document.getElementById('s_nombre').value = cliente.S_NOMBRE;
-    document.getElementById('p_apellido').value = cliente.P_APELLIDO;
-    document.getElementById('s_apellido').value = cliente.S_APELLIDO;
-    document.getElementById('telefono').value = cliente.TELEFONO;
-    document.getElementById('email').value = cliente.CORREO;
-
-    const boton =  document.getElementById('actualizar');
-    boton.innerText  = `Update`
-
-    boton.removeEventListener('click', agregarCliente);
-    
-    boton.addEventListener('click', function() {
-        console.log("hola")
-        
-    });
+    document.getElementById('identidad1').value = cliente.DNI;
+    document.getElementById('p_nombre1').value = cliente.P_NOMBRE;
+    document.getElementById('s_nombre1').value = cliente.S_NOMBRE;
+    document.getElementById('p_apellido1').value = cliente.P_APELLIDO;
+    document.getElementById('s_apellido1').value = cliente.S_APELLIDO;
+    document.getElementById('telefono1').value = cliente.TELEFONO;
+    document.getElementById('email1').value = cliente.CORREO;
 }
 
+function actualizarCliente(){
+    let idActualizar = document.getElementById('modalEditarLabel1').innerText
 
+    console.log(idActualizar)
+
+    const nuevoCliente = {
+        DNI: document.getElementById('identidad1').value,
+        P_NOMBRE: document.getElementById('p_nombre1').value,/* Obtén el primer nombre del nuevo cliente */
+        S_NOMBRE: document.getElementById('s_nombre1').value,/* Obtén el segundo nombre del nuevo cliente */
+        P_APELLIDO:  document.getElementById('p_apellido1').value,/* Obtén el primer apellido del nuevo cliente */
+        S_APELLIDO: document.getElementById('s_apellido1').value,/* Obtén el segundo apellido del nuevo cliente */
+        TELEFONO: document.getElementById('telefono1').value,/* Obtén el teléfono del nuevo cliente */
+        CORREO: document.getElementById('email1').value,/* Obtén el correo del nuevo cliente */
+    };
+
+    console.log(nuevoCliente)
+
+    fetch(`http://localhost:3000/clientes/${idActualizar}`, {
+        method: 'PUT',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(nuevoCliente)
+      })
+    .then((respuesta) => respuesta.json())  
+    .then((datos) => {
+        console.log('Se guardo correctamente', datos);
+        obtenerClientes();
+    })
+    .catch(error => console.log(error));      
+}
 // Llamamos a la función para obtener y mostrar los clientes al cargar la página
 obtenerClientes();
 
@@ -161,14 +177,14 @@ obtenerClientes();
 
 function agregarCliente() {
     
-    const nuevo = {
-        name: document.getElementById('p_nombre').value + ' ' + document.getElementById('s_nombre').value + ' ' +
-            document.getElementById('p_apellido').value + ' ' + document.getElementById('s_apellido').value,
-        email: document.getElementById('email').value,
-        phoneNumber: document.getElementById('telefono').value
-    };
+    // const nuevo = {
+    //     name: document.getElementById('p_nombre').value + ' ' + document.getElementById('s_nombre').value + ' ' +
+    //         document.getElementById('p_apellido').value + ' ' + document.getElementById('s_apellido').value,
+    //     email: document.getElementById('email').value,
+    //     phoneNumber: document.getElementById('telefono').value
+    // };
     
-    console.log(nuevo)
+    // console.log(nuevo)
 
     const nuevoCliente = {
         DNI: document.getElementById('identidad').value,
