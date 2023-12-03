@@ -12,7 +12,7 @@ router.get('/', (req,res)=>{
 // devolver todos los registros
 router.get('/empleados', async (req, res) => {
     const empleados = [];
-    sql="select * from empleado";
+    sql="select * from EMPLEADO";
 
     let result = await BD.Open(sql,[],false);
     console.log(result.rows);
@@ -47,7 +47,7 @@ router.get('/empleados/:ID', async (req, res) => {
     const { ID } = req.params;
 
     try {
-        // Consultar el registro por DNI
+        // Consultar el registro por ID
         const selectQuery = "SELECT * FROM empleado WHERE empleadoID = :ID";
         const result = await BD.Open(selectQuery, [ID], false);
 
