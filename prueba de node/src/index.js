@@ -25,6 +25,12 @@ const tiempoGarantia = require("../routes/tiempoGarantia-route.js");
 const tipoPago = require("../routes/tipoPago-router.js");
 const ventas = require("../routes/venta-routers.js");
 
+const compra = require("../routes/compra-routers.js");
+const factura = require("../routes/factura-routers.js");
+const devolucion = require("../routes/devolucion-routers.js")
+const detalleDevolucion = require("../routes/detalleDevolucion-routers.js")
+const detalleCompra = require("../routes/detalleCompra-routers.js")
+
 
 /**Configuraciones**/
 app.set('port', 3000);
@@ -53,8 +59,12 @@ app.use(procesador)
 app.use(proveedores)
 app.use(so)
 app.use(tiempoGarantia)
-
 app.use(ventas)
+app.use(compra)
+app.use(detalleCompra)
+app.use(factura)
+app.use(devolucion)
+app.use(detalleDevolucion)
 
 app.listen(app.get('port'), ()=>{
     console.log("server status on port en 3000");
