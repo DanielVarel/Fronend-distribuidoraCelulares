@@ -104,6 +104,37 @@ obtenerClientes();
 // Función para agregar un nuevo cliente
 
 
+function agregarCliente() {
+    const nuevoCliente = {
+        ID: /* Obtén el ID del nuevo cliente */
+        P_NOMBRE: /* Obtén el primer nombre del nuevo cliente */
+        S_NOMBRE: /* Obtén el segundo nombre del nuevo cliente */
+        P_APELLIDO: /* Obtén el primer apellido del nuevo cliente */
+        S_APELLIDO: /* Obtén el segundo apellido del nuevo cliente */
+        TELEFONO: /* Obtén el teléfono del nuevo cliente */
+        CORREO: /* Obtén el correo del nuevo cliente */
+        DNI: /* Obtén el DNI del nuevo cliente */
+    };
+
+    fetch('http://localhost:3000/clientes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nuevoCliente),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message); // Mensaje de confirmación del backend
+            // Si el backend responde con éxito, podrías actualizar la tabla mostrando los clientes nuevamente
+            obtenerClientes();
+        })
+        .catch(error => {
+            console.error('Error al agregar el cliente:', error);
+        });
+}
+
+
 //FINPOST
 
 
