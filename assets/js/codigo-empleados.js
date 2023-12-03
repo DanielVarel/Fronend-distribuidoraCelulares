@@ -39,7 +39,7 @@ function mostrarEmpleadosEnTabla(empleados) {
             <td>${empleado.DIRECCION}</td>
             <td>${horario}</td>
             <td>
-            <button type="button" id="nuevo-empleado-editar" onclick="Editar(${empleado.ID}>Editar</button>
+            <button type="button" id="nuevo-empleado-editar" onclick="Editar(${empleado.ID}">Editar</button>
             </td>
         `;
         cuerpoTabla.appendChild(fila);

@@ -104,9 +104,70 @@ router.post('/empleados', async (req, res) => {
         //     return res.status(400).json({ error: "Ya existe un registro con este ID" });
         // }
 
-        const sql = "INSERT INTO empleado (DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA) VALUES (:empleadoID,:DNI, :P_NOMBRE, :S_NOMBRE, :P_APELLIDO, :S_APELLIDO, :TELEFONO, :CORREO, :DEPARTAMENTOID, :CARGOID, :FECHA_INGRESO, :HORA_ENTRADA, :HORA_SALIDA)";
-        console.log('Consulta SQL:', sql);
-        const bindParams = [ DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA];
+        //const sql = "INSERT INTO empleado (DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA) VALUES (:empleadoID,:DNI, :P_NOMBRE, :S_NOMBRE, :P_APELLIDO, :S_APELLIDO, :TELEFONO, :CORREO, :DEPARTAMENTOID, :CARGOID, :FECHA_INGRESO, :HORA_ENTRADA, :HORA_SALIDA)";
+        //console.log('Consulta SQL:', sql);
+        //const bindParams = [ DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHA_INGRESO, HORA_ENTRADA, HORA_SALIDA];
+
+        let departamentoID;
+        let cargoID;
+
+        // Verificar si el departamento existe en la base de datos y obtener su ID
+        // ... (código previo para el departamento)
+
+        // Verificar si el cargo existe en la base de datos
+        const cargoQuery = "SELECT cargoID FROM CARGO WHERE nombre_cargo = ?";
+        const cargoResult = await BD.Open(cargoQuery, [NOMBRE_CARGO], false);
+
+        if (cargoResult.rows.length === 0) {
+            // Si el cargo no existe, agregarlo a la tabla CARGO
+            const insertCargoQuery = "INSERT INTO CARGO (nombre_cargo) VALUES (?)";
+            const insertCargoResult = await BD.Open(insertCargoQuery, [NOMBRE_CARGO], true);
+
+            if (insertCargoResult) {
+                cargoID = insertCargoResult.rows.insertId;
+            } else {
+                throw new Error("Error al insertar el cargo en la base de datos");
+            }
+        } else {
+            cargoID = cargoResult.rows[0][0]; // Usar el ID del cargo existente
+        }
+
+        // Continuar con la lógica para obtener el ID del departamento y la inserción del empleado...
+        // ... (código previo)
+
+        const sql = `
+            INSERT INTO empleado (
+                DNI,
+                P_NOMBRE,
+                S_NOMBRE,
+                P_APELLIDO,
+                S_APELLIDO,
+                TELEFONO,
+                CORREO,
+                DEPARTAMENTOID,
+                CARGOID,
+                FECHA_INGRESO,
+                HORA_ENTRADA,
+                HORA_SALIDA
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+
+        const bindParams = [
+            DNI,
+            P_NOMBRE,
+            S_NOMBRE,
+            P_APELLIDO,
+            S_APELLIDO,
+            TELEFONO,
+            CORREO,
+            DEPARTAMENTOID, // Usar el ID del departamento obtenido
+            CARGOID, // Usar el ID del cargo obtenido
+            FECHA_INGRESO,
+            HORA_ENTRADA,
+            HORA_SALIDA
+        ];
+
+
 
         let result = await BD.Open(sql, bindParams, true);
         console.log(result);
