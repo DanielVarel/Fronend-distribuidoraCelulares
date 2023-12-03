@@ -1,5 +1,3 @@
-
-
 // devuelve todos los registros
 /*function  obtenerClientes(){
     fetch(`http://localhost:3000/clientes`, {
@@ -79,7 +77,6 @@ function mostrarClientesEnTabla(clientes) {
     clientes.forEach(cliente => {
         const fila = document.createElement('tr');
         fila.innerHTML = `
-            <td>${cliente.ID}</td>
             <td>${cliente.DNI}</td>
             <td>${cliente.P_NOMBRE}</td>
             <td>${cliente.S_NOMBRE}</td>
@@ -88,13 +85,71 @@ function mostrarClientesEnTabla(clientes) {
             <td>${cliente.TELEFONO}</td>
             <td>${cliente.CORREO}</td>
             <td>
-            <button type="button">Eliminar</button>
-            <button type="button">Editar</button>
+            <button type="button" onclick="Eliminar(${cliente.ID})" > Eliminar</button>
+            <button type="button" class="btn btn btn-primary" id="nuevo-cliente" data-bs-toggle="modal"
+            data-bs-target=#modalClientes onclick="Editar(${cliente.ID})">Editar</button>
             </td>
         `;
         cuerpoTabla.appendChild(fila);
     });
 }
+
+function Eliminar(id){
+    console.log(id);
+    fetch(`http://localhost:3000/clientes/${id}`, {
+        method: 'delete',
+        headers: {"Content-Type": "application/json"},
+      })
+    .then((respuesta) => respuesta.json())
+    .then((datos) => {
+        console.log(datos);
+        location.reload(true);
+    })
+    .catch(error => {
+            console.log(error)
+    }); 
+}
+
+function Editar(id){
+    console.log(id);
+    fetch(`http://localhost:3000/clientes/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.cliente); 
+            actualizar(data.cliente)
+        })
+        .catch(error => {
+            console.error('Error al obtener los clientes:', error);
+        });
+
+
+}
+
+
+function actualizar(cliente){
+    console.log(cliente);
+    document.getElementById('modalClientesLabel').innerText  = ``;
+    document.getElementById('modalClientesLabel').innerText  = `ACTUALIZAR CLIENTE(${cliente.ID})`
+
+    document.getElementById('identidad').value = cliente.DNI;
+    document.getElementById('p_nombre').value = cliente.P_NOMBRE;
+    document.getElementById('s_nombre').value = cliente.S_NOMBRE;
+    document.getElementById('p_apellido').value = cliente.P_APELLIDO;
+    document.getElementById('s_apellido').value = cliente.S_APELLIDO;
+    document.getElementById('telefono').value = cliente.TELEFONO;
+    document.getElementById('email').value = cliente.CORREO;
+
+    const boton =  document.getElementById('actualizar');
+    boton.innerText  = `Update`
+
+    boton.removeEventListener('click', agregarCliente);
+    
+    boton.addEventListener('click', function() {
+        console.log("hola")
+        
+    });
+}
+
 
 // Llamamos a la función para obtener y mostrar los clientes al cargar la página
 obtenerClientes();
@@ -105,16 +160,27 @@ obtenerClientes();
 
 
 function agregarCliente() {
-    const nuevoCliente = {
-        ID: /* Obtén el ID del nuevo cliente */
-        P_NOMBRE: /* Obtén el primer nombre del nuevo cliente */
-        S_NOMBRE: /* Obtén el segundo nombre del nuevo cliente */
-        P_APELLIDO: /* Obtén el primer apellido del nuevo cliente */
-        S_APELLIDO: /* Obtén el segundo apellido del nuevo cliente */
-        TELEFONO: /* Obtén el teléfono del nuevo cliente */
-        CORREO: /* Obtén el correo del nuevo cliente */
-        DNI: /* Obtén el DNI del nuevo cliente */
+    
+    const nuevo = {
+        name: document.getElementById('p_nombre').value + ' ' + document.getElementById('s_nombre').value + ' ' +
+            document.getElementById('p_apellido').value + ' ' + document.getElementById('s_apellido').value,
+        email: document.getElementById('email').value,
+        phoneNumber: document.getElementById('telefono').value
     };
+    
+    console.log(nuevo)
+
+    const nuevoCliente = {
+        DNI: document.getElementById('identidad').value,
+        P_NOMBRE: document.getElementById('p_nombre').value,/* Obtén el primer nombre del nuevo cliente */
+        S_NOMBRE: document.getElementById('s_nombre').value,/* Obtén el segundo nombre del nuevo cliente */
+        P_APELLIDO:  document.getElementById('p_apellido').value,/* Obtén el primer apellido del nuevo cliente */
+        S_APELLIDO: document.getElementById('s_apellido').value,/* Obtén el segundo apellido del nuevo cliente */
+        TELEFONO: document.getElementById('telefono').value,/* Obtén el teléfono del nuevo cliente */
+        CORREO: document.getElementById('email').value,/* Obtén el correo del nuevo cliente */
+    };
+
+    console.log(nuevoCliente)
 
     fetch('http://localhost:3000/clientes', {
         method: 'POST',
@@ -132,7 +198,10 @@ function agregarCliente() {
         .catch(error => {
             console.error('Error al agregar el cliente:', error);
         });
+        // Limpiar los campos del formulario
+        document.getElementById('formularioClientes').reset();
 }
+
 
 
 //FINPOST
@@ -140,34 +209,36 @@ function agregarCliente() {
 
 
 // Función para agregar un nuevo cliente
-function agregarCliente() {
-    const nuevoId = document.getElementById('identidad').value;
+// function agregarCliente() {
+//     const nuevoId = document.getElementById('identidad').value;
 
-    // Verificar si ya existe un cliente con el mismo ID 
-    const clienteExistente = usuarioRegistrados.find(cliente =>
-        cliente.id === nuevoId 
-    );
+//     // Verificar si ya existe un cliente con el mismo ID 
+//     // const clienteExistente = usuarioRegistrados.find(cliente =>
+//     //     cliente.id === nuevoId 
+//     // );
 
-    if (clienteExistente) {
-        alert('Ya existe un cliente con el mismo ID.');
-        return;
-    }
+//     // if (clienteExistente) {
+//     //     alert('Ya existe un cliente con el mismo ID.');
+//     //     return;
+//     // }
 
-    const nuevoCliente = {
-        id: nuevoId,
-        name: document.getElementById('p_nombre').value + ' ' + document.getElementById('s_nombre').value + ' ' +
-            document.getElementById('p_apellido').value + ' ' + document.getElementById('s_apellido').value,
-        email: document.getElementById('email').value,
-        phoneNumber: document.getElementById('telefono').value
-    };
+//     const nuevoCliente = {
+//         id: nuevoId,
+//         name: document.getElementById('p_nombre').value + ' ' + document.getElementById('s_nombre').value + ' ' +
+//             document.getElementById('p_apellido').value + ' ' + document.getElementById('s_apellido').value,
+//         email: document.getElementById('email').value,
+//         phoneNumber: document.getElementById('telefono').value
+//     };
     
-    usuarioRegistrados.push(nuevoCliente);
+//     console.log(nuevoCliente)
 
-    mostrarClientes(usuarioRegistrados);
+//     // usuarioRegistrados.push(nuevoCliente);
+
+//     // mostrarClientes(usuarioRegistrados);
     
-    // Limpiar los campos del formulario
-    document.getElementById('formularioClientes').reset();
-}
+//     // Limpiar los campos del formulario
+//     document.getElementById('formularioClientes').reset();
+// }
 
 // Función para eliminar un cliente
 function eliminarCliente(index) {
