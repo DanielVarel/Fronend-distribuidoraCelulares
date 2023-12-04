@@ -1,9 +1,10 @@
 // Esta función obtiene los datos de las ventas desde el servidor y los muestra en la tabla
 function obtenerVentas() {
-    fetch('http://localhost:3000/venta')
+    fetch('http://localhost:3000/ventas')
         .then(response => response.json())
         .then(data => {
-            mostrarVentasEnTabla(data.venta);
+            mostrarVentasEnTabla(data.ventas);
+            console.log(data.ventas)
         })
         .catch(error => {
             console.error('Error al obtener los detalles de ventas:', error);
@@ -11,20 +12,20 @@ function obtenerVentas() {
 }
 
 // Esta función muestra los campos de las ventas en la tabla
-function mostrarVentasEnTabla(venta) {
+function mostrarVentasEnTabla(ventas) {
     const cuerpoTablaVentas = document.getElementById('cuerpo-tabla-ventas');
     cuerpoTablaVentas.innerHTML = ''; // Limpiamos el contenido actual de la tabla
 
-    venta.forEach(venta => {
+    ventas.forEach(venta => {
         console.log(venta)
 
         const fila = document.createElement('tr');
         fila.innerHTML = `
-            <td>${venta.ventaID}</td>
-            <td>${venta.empleadoID}</td>
-            <td>${venta.clienteID}</td>
-            <td>${venta.fecha_venta}</td>
-            <td>${venta.tipoPagoID}</td>
+            <td>${venta.ID}</td>
+            <td>${venta.Empleado}</td>
+            <td>${venta.Cliente}</td>
+            <td>${venta.FechaVenta}</td>
+            <td>${venta.TipoPago}</td>
             <td>
             <button type="button" class="btn btn btn-primary" id="venta#${venta.ventaID}" data-bs-toggle="modal" data-bs-target=#modalVerFactura>Ver factura</button>
             </td>
