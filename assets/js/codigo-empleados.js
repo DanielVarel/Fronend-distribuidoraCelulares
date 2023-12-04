@@ -7,6 +7,7 @@ function obtenerEmpleados() {
         .then(response => response.json())
         .then(data => {
             mostrarEmpleadosEnTabla(data.empleados);
+            console.log(data.empleados)
         })
         .catch(error => {
             console.error('Error al obtener los empleados:', error);
@@ -139,6 +140,9 @@ function agregarEmpleado() {
     
     // console.log(nuevo)
 
+    const fecha = formatearFecha(document.getElementById('fecha_ingreso').value);
+    console.log(fecha);
+
     const nuevoEmpleado = {
         DNI: document.getElementById('identidad').value,
         P_NOMBRE: document.getElementById('p_nombre').value,/* Obtén el primer nombre del nuevo cliente */
@@ -147,10 +151,10 @@ function agregarEmpleado() {
         S_APELLIDO: document.getElementById('s_apellido').value,/* Obtén el segundo apellido del nuevo cliente */
         TELEFONO: document.getElementById('telefono').value,/* Obtén el teléfono del nuevo cliente */
         CORREO: document.getElementById('email').value,/* Obtén el correo del nuevo cliente */
-        DEPARTAMENTO: document.getElementById('departamento').value,/* Obtén el correo del nuevo cliente */
-        CARGO: document.getElementById('cargo').value,/* Obtén el correo del nuevo cliente */
-        FECHA_INGRESO: document.getElementById('fecha_ingreso').value,
-        DIRECCION: document.getElementById('direccion').value,/* Obtén el correo del nuevo cliente */
+        DEPARTAMENTOID: document.getElementById('departamento').value,/* Obtén el correo del nuevo cliente */
+        CARGOID: document.getElementById('cargo').value,/* Obtén el correo del nuevo cliente */
+        FECHAINGRESO: fecha,
+        DIRECCIONID: document.getElementById('direccion').value,/* Obtén el correo del nuevo cliente */
         HORA_ENTRADA: document.getElementById('hora_entrada').value,/* Obtén el correo del nuevo cliente */
         HORA_SALIDA: document.getElementById('hora_salida').value,/* Obtén el correo del nuevo cliente */
     };
@@ -176,6 +180,18 @@ function agregarEmpleado() {
         // Limpiar los campos del formulario
         document.getElementById('formularioEmpleadosEditar').reset();
 }
+
+function formatearFecha(fecha) {
+    const fechaObjeto = new Date(fecha);
+    const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
+    // Obtener los componentes de la fecha
+    const dia = fechaObjeto.toLocaleDateString('es-ES', { day: 'numeric' });
+    const mes = fechaObjeto.toLocaleDateString('es-ES', { month: 'numeric' });
+    const año = fechaObjeto.toLocaleDateString('es-ES', { year: 'numeric' });
+
+    // Unir los componentes con guiones
+    return `${dia}-${mes}-${año}`;
+  }
 
 
 
