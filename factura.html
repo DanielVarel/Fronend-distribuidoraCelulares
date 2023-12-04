@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facturas</title>
+    <!-- Enlaza tu archivo de estilos CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilos-factura.css">
+</head>
+<body style="background-color: #010a26;">
+    <div class="header" style="background-color: #00b3ca; height: 60px; border-radius: 10px; margin-bottom: 20px; margin-top: 20px ;padding-top: 10px;">
+        <div class="menu d-flex justify-content-center">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html"><i class="fas fa-truck"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clientes.html"><i class="fas fa-users"></i>Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ventas.html"><i class="fas fa-cash-register"></i>Ventas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="empleados.html"><i class="fas fa-user-tie"></i>Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="proveedores.html"><i class="fas fa-truck"></i>Proveedores</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="contenedor" style="background-color: white;">
+        <h1>Facturas</h1>
+    <table id="tabla-facturas">
+        <thead>
+            <tr>
+                <th>Venta ID</th>
+                <th>Total Venta</th>
+                <th>ISV</th>
+                <th>Total Neto</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpo-tabla"></tbody>
+    </table>
+    </div>
+    <!-- Agrega tu archivo de scripts JavaScript -->
+    <script src="assets/js/codigo-factura.js"></script>
+</body>
+</html>
+
+
