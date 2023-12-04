@@ -87,11 +87,11 @@ router.get('/empleados/:ID', async (req, res) => {
 
 //insertar un nuevo registro
 router.post('/empleados', async (req, res) => {
-    const {empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHAINGRESO, HORA_ENTRADA, HORA_SALIDA} = req.body;
+    const {empleadoID, DNI, P_NOMBRE, S_NOMBRE, P_APELLIDO, S_APELLIDO, DIRECCIONID, TELEFONO, CORREO, DEPARTAMENTOID, CARGOID, FECHAINGRESO, HORA_ENTRADA, HORA_SALIDA} = req.body;
 
     console.log(req.body)
    
-    if (!DNI || !P_NOMBRE || !S_NOMBRE ||  !P_APELLIDO || !S_APELLIDO || !TELEFONO || !CORREO || !DEPARTAMENTOID || !CARGOID || !FECHAINGRESO || !HORA_ENTRADA || !HORA_SALIDA) {
+    if (!DNI || !P_NOMBRE || !S_NOMBRE || !P_APELLIDO || !S_APELLIDO || !TELEFONO || !DIRECCIONID || !CORREO || !DEPARTAMENTOID || !CARGOID || !FECHAINGRESO || !HORA_ENTRADA || !HORA_SALIDA) {
         return res.status(400).json({ error: "Todos los campos son requeridos" });
     }
 

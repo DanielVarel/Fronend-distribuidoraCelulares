@@ -50,12 +50,11 @@
                                 <th>Empleado</th>
                                 <th>Cliente</th>
                                 <th>Fecha</th>
-                                <th>Cantidad de telefonos</th>
-                                <th>Total pagado</th>
+                                <th>Tipo de pago</th>
                                 <th>Ver factura</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpo-tabla">
+                        <tbody id="cuerpo-tabla-ventas">
                             <!-- INSERTAR DATOS DE LAS VENTAS -->
                         </tbody>
                     </table>
@@ -87,20 +86,31 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-auto">     
+                                <label for="fecha_venta">Fecha:</label>
+                                <input type="date" id="fecha_venta" name="fecha_venta" required>
+                            </div>
+                            <div class="col-auto">
+                                <label for="tipo_pago">Tipo de pago:</label>
+                                <input type="number" id="tipoPagoID" name="tipoPagoID" required>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-auto">
                                 <label for="modelo" class="form-label">Modelo</label>
-                                <input class="form-control" list="modeloOptions" id="modeloID" placeholder="Type to search...">
-                                <datalist id="modeloOptions">
-                                <option value="galaxy s20">
-                                <option value="IP 15 PRO MAX">
-                                <option value="Google pixel 8">
-                                <option value="galaxy s23 ultra">
-                                <option value="IP 14 PRO">
+                                <input class="form-control" list="modeloOptions" id="modeloOptionsInput" placeholder="Type to search...">
+                                <datalist id="modeloOptionsList">
+                                    <!-- MOSTRAR LOS MODELOS PARA VENDER -->
+                                    <option value="galaxy s20">
+                                    <option value="IP 15 PRO MAX">
+                                    <option value="Google pixel 8">
+                                    <option value="galaxy s23 ultra">
+                                    <option value="IP 14 PRO">
                                 </datalist>
                               </div>
                               <div class="col-auto">
                                 <label for="cantidad" class="visually-hidden">Cantidad:</label>
-                                <input type="number" class="form-control" id="cantidad">
+                                <input type="number" class="form-control" id="cantidadCelular">
                               </div>
                               <div class="col-auto">
                                 <button type="button" class="btn btn-primary mb-3">Agregar</button>
@@ -137,5 +147,6 @@
 
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/codigo-ventas.js"></script>
 </body>
 </html>
