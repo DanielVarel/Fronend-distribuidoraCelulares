@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos-compra.css">
+
+    
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="header" style="height: 40px;">
+
+        </div>
+
+        <div class="container">
+            <div class="menuColumn">
+                <div class="itemList"><i class="fa-solid fa-sidebar"></i><a href="clientes.html">Clientes</a></div>
+                <div class="itemList"><span>Ventas</span></div>
+                <div class="itemList"><i class="fa-sharp fa-regular fa-moped"></i><a  href="empleados.html">Empleados</a></div>
+                <div class="itemList"><a  href="proveedores.html">Proveedores</a></div>
+            </div>
+            
+            <!-- MOSTRAR DATOS -->
+
+            <div class="frames">
+
+                <div id="nuevo-compra-formulario">
+                    <button type="button" class="btn btn btn-primary" id="nuevo-compra" data-bs-toggle="modal"
+                        data-bs-target=#modalCompras>Nuevo Compra</button>
+                </div>
+
+
+                <div class="contenedor">
+
+                    <h4 style="padding-left: 20px;">Lista de Compras</h4>
+                        <input type="text" id="buscador" placeholder="Buscar por DNI">
+                            <div class="seccion-compras" id="seccion-compras">
+                                <button type="button" onclick="buscarCompra()" >Buscar</button>
+                            <!-- Aquí se mostrarán los compras filtrados -->
+                        </div>
+                    </div>
+                    
+
+
+                    <table id="tabla-compras" border="1">
+                        <thead>
+                            <tr>
+                                <th>Compra id</th>
+                                <th>Empleado</th>
+                                <th>Proveedor</th>
+                                <th>Fecha compra</th>
+                                <th>Tipo pago</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla">
+                            <!-- Aquí se mostrarán los datos de los compras -->
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </div>
+
+            <!-- MOSTRAR DATOS -->
+
+        </div>
+    </div>
+
+
+
+    <!-- Modal Registro-->
+    <div class="modal fade" id="modalCompras" tabindex="-1" aria-labelledby="modalComprasLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header" style="color: white; background-color: #00B3CA;">
+                    <h1 class="modal-title fs-5" id="modalComprasLabel">NUEVA COMPRA</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioComprasEditar">
+                        <div class="row">
+                            <div class="col-md-6">     
+                                <label >Empleado:</label>
+                                <select id="empleadoid" name="empleadoid" required>
+                                    <option selected disabled>Seleccione una opcion</option>
+                                </select>
+                                <label >Proveedor:</label>
+                                <select id="proveedorid" name="proveedorid" required>
+                                    <option selected disabled>seleccione una opcion</option>
+                                </select>
+
+                                  
+                            
+                                <label >Fecha Compra:</label>
+                                <input type="date"  id="fechacompra" name="fechacompra" required >
+                                <label >Tipo pago:</label>
+                                <select id="tipopagoid" name="tipopagoid" required>
+                                    <option selected disabled>Seleccione una opcion</option>
+                                </select>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div id="contenedorCampos">
+                                    <!-- Aquí se agregarán dinámicamente los campos de selección y cantidad -->
+                                    
+                                  </div>
+                                  <button id="agregarCampo">Agregar campos</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary"  onclick="agregarCompra()">Save</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin Modal -->
+
+    
+    
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/codigo-compra.js"></script>
+
+
+</body>
+
+</html>
