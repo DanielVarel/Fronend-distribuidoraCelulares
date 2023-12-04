@@ -39,27 +39,29 @@
 
                 <div class="contenedor">
 
-                    <h4>Lista de Proveedores</h4>
+                    <h4 style="padding-left: 10px;">Lista de Proveedores</h4>
                         <input type="text" id="buscador" placeholder="Buscar por nombre o ID" onkeyup="buscarProveedor()">
                             <div class="seccion-proveedores" id="seccion-proveedores">
                             <!-- Aquí se mostrarán los proveedores filtrados -->
                         </div>
                     </div>
-                    <!--
-                    <div class="seccion-proveedores" id="seccion-proveedores">
-                        <div class="card">
+                    
+                    <table id="tabla-proveedores" border="1">
+                        <thead style="text-align: center; color: #00B3CA;">
+                            <tr>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
+                                <th>DIRECCION</th>
+                                <th>PAIS</th>
+                                <th>TELEFONO</th>
+                                <th>CORREO</th>
                                 
-                            <TABLE BORDER>
-                                <TR class="detalles-tabla">
-                                    <TH></TH><TH>ID</TH> <TH>Name</TH> <TH>Email</TH> <TH>Phone number</TH> <TH>Verified</TH>
-                                </TR>
-                                <TR class="detalles-tabla">
-                                    <TD class="checkbox-tama"><div class="checkbox-apple"><input class="yep" id="check-apple" type="checkbox"><label for="check-apple"></label></div></TD><TD>1234567</TD><TD><div class="tabla-repartidor"><img src="assets/img/repartidor2.jpeg" class="img-repartidor"><p>Javier Perez</p></div></TD><TD>daniel.avila@gamil.com</TD> <TD>123456789</TD><TD class="botones"><button class="boton-true">True</button><button class="boton-false">False</button></TD>
-                                </TR>
-                                
-                            </TABLE> 
-                        </div>
-                    </div>-->
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla-proveedores">
+                            <!-- Aquí se mostrarán los datos de los clientes -->
+                        </tbody>
+                    </table>
 
 
                 </div>

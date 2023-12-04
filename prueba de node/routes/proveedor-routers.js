@@ -12,7 +12,8 @@ router.get('/', (req,res)=>{
 // devolver todos los registros
 router.get('/proveedores', async (req, res) => {
     const proveedores = [];
-    sql="select * from proveedor";
+    sql="select proveedorID, nombre_proveedor, DIRECCION.colonia, PAIS.nombre_pais, telefono, correo from proveedor INNER JOIN PAIS on PROVEEDOR.paisID = PAIS.paisID "+
+    "INNER JOIN DIRECCION ON PROVEEDOR.direccionID = DIRECCION.direccionID";
 
     let result = await BD.Open(sql,[],false);
     console.log(result.rows);
@@ -21,12 +22,12 @@ router.get('/proveedores', async (req, res) => {
 
     result.rows.map(prove=>{
         let userSchema = {
-            "ID": prove[0],
-            "NombreProveedor": prove[1],
-            "Direccion": prove[2],
-            "Pais": prove[3],
-            "Telefono": prove[4],
-            "Correo": prove[5]
+            "proveedorID": prove[0],
+            "NOMBRE_PROVEEDOR": prove[1],
+            "DIRECCIONID": prove[2],
+            "PAISID": prove[3],
+            "TELEFONO": prove[4],
+            "CORREO": prove[5]
         }
         proveedores.push(userSchema)
     });
@@ -49,12 +50,12 @@ router.get('/proveedores/:ID', async (req, res) => {
 
         // Mapear el resultado y enviarlo como respuesta
         const proveedor = {
-            "ID":  result.rows[0][0],
-            "NombreProveedor": result.rows[0][1],
-            "Direccion": result.rows[0][2],
-            "Pais": result.rows[0][3],
-            "Telefono": result.rows[0][4],
-            "Correo": result.rows[0][5],
+            "proveedorID":  result.rows[0][0],
+            "NOMBREPROVEEDOR": result.rows[0][1],
+            "DIRECCIONID": result.rows[0][2],
+            "PAISID": result.rows[0][3],
+            "TELEFONO": result.rows[0][4],
+            "CORREO": result.rows[0][5],
 
         };
 
