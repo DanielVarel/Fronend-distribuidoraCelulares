@@ -12,7 +12,7 @@ router.get('/', (req,res)=>{
 // devolver todos los registros
 router.get('/ventas', async (req, res) => {
     const ventas = [];
-    sql="select * from venta";
+    sql="SELECT venta.ventaid, clientes.dni AS clienteDNI, empleado.dni AS empleadoDNI,  venta.fecha_venta, tipo_pago.metodo_pago FROM venta INNER JOIN clientes ON venta.clienteid = clientes.id INNER JOIN empleado ON venta.empleadoid = empleado.empleadoid INNER JOIN tipo_pago ON venta.tipopagoid = tipo_pago.tipopagoid";
 
     let result = await BD.Open(sql,[],false);
     console.log(result.rows);
@@ -22,9 +22,9 @@ router.get('/ventas', async (req, res) => {
     result.rows.map(ven=>{
         let userSchema = {
             "ID": ven[0],
-            "FechaVenta": ven[1],
-            "Cliente": ven[2],
-            "Empleado": ven[3],
+            "Cliente": ven[1],
+            "Empleado": ven[2],
+            "FechaVenta": ven[3],
             "TipoPago": ven[4]
             
         }
